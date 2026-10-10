@@ -146,8 +146,8 @@ select.field__input {
 
 .person-card__name {
   font-family: var(--f-display);
-  font-size: var(--fs-h4);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-card);
+  font-weight: var(--fw-semibold);
   margin-bottom: var(--s-2);
 }
 .person-card__role {
