@@ -87,9 +87,8 @@
 .ptile__media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
 .ptile:hover .ptile__media img { transform: scale(1.04); filter: grayscale(0.1); }
 .ptile__body { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); flex: 1; }
-.ptile__title { font-size: var(--fs-h4); font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--c-heading); text-wrap: balance; }
+.ptile__title { font-size: var(--fs-card); font-weight: var(--fw-semibold); letter-spacing: var(--ls-h3); line-height: var(--lh-heading); color: var(--c-heading); text-wrap: balance; }
 .ptile__text { font-size: var(--fs-sm); color: var(--c-text); text-wrap: pretty; }
-.ptiles--3 .ptile__title { font-size: var(--fs-card); }
 @media (max-width: 1100px) { .ptiles--4, .ptiles--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ptiles--3 { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .ptiles--4, .ptiles--5 { grid-template-columns: 1fr; } }
 
@@ -116,7 +115,7 @@
 .hstep::before { content: ""; position: absolute; left: 0; right: 0; top: 0.5rem; height: var(--hairline); background: var(--c-rule); }
 .hstep::after { content: ""; position: absolute; left: 0; top: 0; width: 1rem; height: 1rem; border-radius: var(--radius-pill); background: var(--c-white); border: var(--rule-accent) solid var(--c-accent); }
 .hstep__num { display: block; margin-bottom: var(--s-3); font-size: var(--fs-gate); letter-spacing: var(--ls-caps); color: var(--c-accent-ink); }
-.hstep__title { font-size: var(--fs-h4); font-weight: var(--fw-semibold); margin-bottom: var(--s-2); }
+.hstep__title { font-size: var(--fs-card); font-weight: var(--fw-semibold); letter-spacing: var(--ls-h3); line-height: var(--lh-heading); margin-bottom: var(--s-2); }
 .hstep__text { font-size: var(--fs-sm); color: var(--c-ink-mute); text-wrap: pretty; }
 @media (max-width: 1000px) {
   .hsteps { grid-template-columns: 1fr; }
@@ -124,16 +123,72 @@
   .hstep::before { left: 0.5rem; right: auto; top: 0; bottom: 0; width: var(--hairline); height: auto; }
 }
 
-/* Capability curve (Home): four countries rise, India is next */
-.curve { margin-top: var(--s-9); }
-.curve__svg { width: 100%; height: auto; display: block; color: var(--c-accent-bright); overflow: visible; }
-.curve__line { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2.2s var(--ease); }
-.curve.is-in .curve__line, .no-js .curve__line { stroke-dashoffset: 0; }
-.curve__dot { fill: var(--c-graphite); stroke: currentColor; stroke-width: 2; }
-.curve__dot--india { fill: var(--c-accent-bright); }
-.curve__labels { list-style: none; margin: var(--s-5) 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-4); font-size: var(--fs-label); font-weight: var(--fw-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-on-navy-mute); }
-.curve__labels li:last-child { color: var(--c-accent-bright); }
-@media (max-width: 700px) { .curve__labels { font-size: var(--fs-micro); letter-spacing: var(--ls-caps); } }
+/* The pattern (Home): a rising staircase on a light (paper) surface, so it sits between
+   the dark Sectors panels and the Why FTR section instead of fusing with them. Four steps
+   stand complete; India's is solid where under way and dashed where FTR helps it rise. */
+.pattern__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-9) var(--grid-gap); align-items: center; margin-top: var(--s-8); }
+.pattern__copy { display: grid; gap: var(--s-6); align-content: start; }
+.pattern__copy .lead { text-wrap: pretty; max-width: 40ch; }
+
+.pchart { border-bottom: var(--hairline) solid var(--c-rule); padding-top: var(--s-6); }
+.pchart__steps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-3);
+  height: clamp(19rem, 14rem + 18vw, 29rem);
+}
+.pstep { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: var(--s-4); padding-bottom: var(--s-4); min-width: 0; }
+.pstep:nth-child(1) { --lvl: 26; --i: 0; }
+.pstep:nth-child(2) { --lvl: 40; --i: 1; }
+.pstep:nth-child(3) { --lvl: 54; --i: 2; }
+.pstep:nth-child(4) { --lvl: 68; --i: 3; }
+.pstep:nth-child(5) { --lvl: 92; --i: 4; }
+
+.pstep__bar {
+  position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
+  height: calc(var(--lvl) * 1%); min-height: 3rem; padding: var(--s-4);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c-graphite) 14%, transparent), color-mix(in srgb, var(--c-graphite) 4%, transparent));
+  border-top: var(--rule-accent) solid var(--c-accent);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform var(--d-slow) var(--ease);
+  transition-delay: calc(var(--stagger) * var(--i) * 3);
+}
+.pstep__num { font-size: var(--fs-gate); font-weight: var(--fw-semibold); letter-spacing: var(--ls-caps); color: var(--c-number); }
+.pstep__name {
+  font-size: var(--fs-label); font-weight: var(--fw-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-heading);
+  opacity: 0; transition: opacity var(--d-base) var(--ease); transition-delay: calc(var(--stagger) * (var(--i) * 3 + 6));
+}
+
+/* India: copper where under way, dashed where it rises next. */
+.pstep--next .pstep__bar {
+  background: linear-gradient(0deg, color-mix(in srgb, var(--c-accent) 55%, transparent) 0, color-mix(in srgb, var(--c-accent) 26%, transparent) 46%, transparent 46%);
+  border: var(--hairline) dashed var(--c-accent); border-top: var(--rule-accent) solid var(--c-accent);
+}
+.pstep--next .pstep__num, .pstep--next .pstep__name { color: var(--c-accent-ink); }
+.pstep__arrow { position: absolute; right: var(--s-4); top: var(--s-4); width: 1.5rem; height: auto; color: var(--c-accent-ink); transform: rotate(-90deg); }
+.pstep__tag {
+  align-self: stretch; margin: var(--s-7) 0 auto; padding-top: var(--s-3);
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1.3; color: var(--c-heading); text-wrap: balance;
+  opacity: 0; transform: translateY(0.5rem);
+  transition: opacity var(--d-base) var(--ease), transform var(--d-base) var(--ease);
+  transition-delay: calc(var(--stagger) * 22);
+}
+
+.pchart.is-in .pstep__bar, .no-js .pstep__bar { transform: scaleY(1); }
+.pchart.is-in .pstep__name, .no-js .pstep__name { opacity: 1; }
+.pchart.is-in .pstep__tag, .no-js .pstep__tag { opacity: 1; transform: none; }
+
+@media (max-width: 960px) { .pattern__grid { grid-template-columns: 1fr; } .pattern__copy .lead { max-width: none; } }
+/* Phones: the staircase lies down into five rows that grow rightwards. */
+@media (max-width: 640px) {
+  .pchart__steps { height: auto; grid-template-columns: 1fr; gap: var(--s-3); }
+  .pstep { flex-direction: row-reverse; align-items: center; justify-content: flex-end; gap: var(--s-4); padding-bottom: 0; }
+  .pstep__name { flex: 0 0 6.25rem; }
+  .pstep__bar { height: 3rem; min-height: 0; flex-direction: row; align-items: center; justify-content: flex-start; gap: var(--s-4); padding-block: 0; width: calc(var(--lvl) * 1%); transform: scaleX(0); transform-origin: left; }
+  .pstep--next .pstep__bar { height: 4rem; background: linear-gradient(90deg, color-mix(in srgb, var(--c-accent) 50%, transparent) 0, color-mix(in srgb, var(--c-accent) 24%, transparent) 46%, transparent 46%); border: var(--hairline) dashed var(--c-accent); border-left: var(--rule-accent) solid var(--c-accent); }
+  .pstep__tag { align-self: center; margin: 0 0 0 auto; padding: 0; text-align: right; }
+  .pstep__arrow { position: static; transform: none; width: 1.25rem; }
+  .pchart.is-in .pstep__bar, .no-js .pstep__bar { transform: scaleX(1); }
+}
 
 /* Sourced stat note */
 .stat__src { display: block; margin-top: var(--s-3); font-size: var(--fs-xs); color: var(--c-ink-faint); }
@@ -176,10 +231,51 @@
 .statement strong { color: var(--c-accent-ink); font-weight: inherit; }
 .on-navy .statement strong { color: var(--c-accent-bright); }
 
+/* Home intro: the same sentence at the standard statement size (below the H2 scale), against a copper rule. Body is quiet, the key
+   phrase is full ink and is underlined by a rule that draws itself when the gate releases. */
+#intro .statement {
+  max-width: 40ch; color: var(--c-text);
+  padding-left: var(--s-7); border-left: var(--rule-accent) solid var(--c-accent);
+}
+#intro .statement strong {
+  color: var(--c-heading); padding-bottom: 0.04em;
+  background: linear-gradient(var(--c-accent), var(--c-accent)) left bottom / 0% var(--rule-accent) no-repeat;
+  transition: background-size var(--d-release) var(--ease); transition-delay: var(--d-base);
+}
+#intro.is-released .statement strong, .no-js #intro .statement strong { background-size: 100% var(--rule-accent); }
+@media (max-width: 640px) { #intro .statement { padding-left: var(--s-5); } }
+
+/* Gauge: a measuring rule under the statement. A copper marker travels the scale and
+   settles inside the target bracket: right first time, shown rather than said. */
+.gauge {
+  --hit: 72%; --mark: var(--s-6);
+  position: relative; height: var(--s-9); margin-top: var(--s-9);
+  border-bottom: var(--hairline) solid var(--c-ink-faint);
+  background:
+    repeating-linear-gradient(90deg, var(--c-ink-faint) 0 var(--hairline), transparent var(--hairline) 3.75rem) left bottom / 100% 70% no-repeat,
+    repeating-linear-gradient(90deg, var(--c-rule) 0 var(--hairline), transparent var(--hairline) 0.75rem) left bottom / 100% 38% no-repeat;
+}
+.gauge::before {
+  content: ""; position: absolute; bottom: 0; left: var(--hit); width: var(--mark); height: 100%;
+  transform: translateX(-50%); border: var(--hairline) dashed var(--c-accent); border-bottom: 0;
+  opacity: 0; transition: opacity var(--d-base) var(--ease); transition-delay: calc(var(--d-release) + var(--d-base));
+}
+.gauge__mark {
+  position: absolute; bottom: 0; left: 0; width: var(--rule-accent); height: 100%;
+  background: var(--c-accent); transform: translateX(-50%);
+  transition: left calc(var(--d-release) * 1.6) var(--ease); transition-delay: var(--d-base);
+}
+.gauge__mark::before {
+  content: ""; position: absolute; top: calc(var(--s-3) * -1); left: 50%; width: var(--s-3); height: var(--s-3);
+  background: var(--c-accent); transform: translateX(-50%); clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+#intro.is-released .gauge__mark, .no-js #intro .gauge__mark { left: var(--hit); }
+#intro.is-released .gauge::before, .no-js #intro .gauge::before { opacity: 1; }
+@media (max-width: 640px) { .gauge { --hit: 66%; margin-top: var(--s-7); height: var(--s-8); } }
+
 /* Three-up facts (Home market context) */
 .facts--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .facts--3 { grid-template-columns: 1fr; row-gap: var(--s-7); } .facts--3 .fact + .fact { padding-left: 0; } }
-.curve__labels li { text-align: center; }
 
 /* Label / description rows ("what to show") */
 .kv { margin-top: var(--s-8); border-top: var(--hairline) solid var(--c-rule); }

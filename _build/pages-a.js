@@ -36,17 +36,33 @@ const sectorIcons = (P) => `      <ul class="icons6">
 ${SECTORS.map(([id, ic, name]) => `        <li class="icons6__item reveal"><a href="${P}sectors/#${id}">${icons[ic]}<span>${name}</span></a></li>`).join('\n')}
       </ul>`;
 
-const curve = () => `      <div class="curve reveal">
-        <svg class="curve__svg" viewBox="0 0 1000 220" role="img" aria-label="A rising line through Ireland, Arizona, Singapore and Taiwan, ending at India as the next point">
-          <path class="curve__line" d="M100,180 C200,178 200,140 300,140 C400,138 400,105 500,105 C600,103 600,70 700,70 C800,68 800,30 900,28"/>
-          <circle class="curve__dot" cx="100" cy="180" r="7"/>
-          <circle class="curve__dot" cx="300" cy="140" r="7"/>
-          <circle class="curve__dot" cx="500" cy="105" r="7"/>
-          <circle class="curve__dot" cx="700" cy="70" r="7"/>
-          <circle class="curve__dot curve__dot--india" cx="900" cy="28" r="9"/>
-        </svg>
-        <ul class="curve__labels"><li>Ireland</li><li>Arizona</li><li>Singapore</li><li>Taiwan</li><li>India</li></ul>
-      </div>`;
+// "The pattern": four places each built capability alongside their programmes; India is
+// next. A rising staircase (no figures, so nothing is claimed beyond the brief's sentence).
+// The India step is solid where it is under way and dashed where FTR helps it rise.
+const PATTERN = ['Ireland', 'Arizona', 'Singapore', 'Taiwan', 'India'];
+const patternChart = (P) => `        <div class="pchart reveal">
+          <ol class="pchart__steps" aria-label="Ireland, Arizona, Singapore and Taiwan have each built capability; India is next">
+${PATTERN.map((n, i) => (i < 4
+    ? `            <li class="pstep"><span class="pstep__bar" aria-hidden="true"><span class="pstep__num">0${i + 1}</span></span><span class="pstep__name">${n}</span></li>`
+    : `            <li class="pstep pstep--next"><span class="pstep__bar" aria-hidden="true"><span class="pstep__num">0${i + 1}</span>${arrowImg(P, 'pstep__arrow')}<span class="pstep__tag">FTR is built to help</span></span><span class="pstep__name">${n}</span></li>`)).join('\n')}
+          </ol>
+        </div>`;
+
+const patternSection = (P) => `  <section class="section on-paper gate pattern" id="pattern" aria-labelledby="pattern-h">
+    <div class="shell">
+      <div class="gate__head">
+        <span class="gate__num">03</span>
+        <span class="label">The pattern</span>
+      </div>
+      <div class="pattern__grid">
+        <div class="pattern__copy">
+          <h2 class="h2 wipe" id="pattern-h">Every programme has built the capability alongside it.</h2>
+          <p class="lead">Ireland, Arizona, Singapore and Taiwan each built mission-critical execution capability alongside their programmes. India is now doing the same &mdash; FTR is built to help.</p>
+        </div>
+${patternChart(P)}
+      </div>
+    </div>
+  </section>`;
 
 const MARKET_STATS = [
   ['Foreign direct investment into India', '$58.85bn', 'FY2025-26', 'DPIIT'],
@@ -81,18 +97,15 @@ function home() {
     </div>
   </section>
 
-${sec({ id: 'intro', tone: 'on-paper', label: 'Why now', body: `      <p class="statement" id="__H__">India is building its semiconductor and data centre future. FTR brings Irish and European mission-critical execution standards to build it <strong>right first time</strong>.</p>` })}
+${sec({ id: 'intro', tone: 'on-paper', label: 'Why now', body: `      <p class="statement" id="__H__">India is building its semiconductor and data centre future. FTR brings Irish and European mission-critical execution standards to build it <strong>right first time</strong>.</p>
+      <div class="gauge" aria-hidden="true"><span class="gauge__mark"></span></div>` })}
 
 ${sec({ id: 'services', num: '01', label: 'Services', status: 'Three ways we work', body: `${head('Three services. One standard.')}
 ${cards3(P, SERVICES)}` })}
 
 ${sectorPanels(P, SECTORS)}
 
-${sec({ id: 'pattern', tone: 'on-navy', num: '03', label: 'The pattern', body: `      <div class="grid">
-        <div class="split__head"><h2 class="h2 wipe" id="__H__">Every programme has built the capability alongside it.</h2></div>
-        <div class="split__body"><p class="lead">Ireland, Arizona, Singapore and Taiwan each built mission-critical execution capability alongside their programmes. India is now doing the same &mdash; FTR is built to help.</p></div>
-      </div>
-${curve()}` })}
+${patternSection(P)}
 
 ${sec({ id: 'why', num: '04', label: 'Why FTR', body: `${head('Four reasons to choose FTR.')}
 ${whyTiles(P)}

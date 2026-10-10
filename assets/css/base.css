@@ -1343,8 +1343,8 @@ a { color: inherit; }
 
 .sector__title {
   font-family: var(--f-display);
-  font-size: var(--fs-h3);
-  font-weight: var(--fw-medium);
+  font-size: var(--fs-card);
+  font-weight: var(--fw-semibold);
   letter-spacing: var(--ls-h3);
   line-height: var(--lh-heading);
 }
