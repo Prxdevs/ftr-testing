@@ -298,6 +298,11 @@
 .member__bio { font-size: var(--fs-sm); color: var(--c-text); text-wrap: pretty; }
 .on-navy .member__role { color: var(--c-accent-bright); }
 .on-navy .member__bio { color: var(--c-on-navy-mute); }
+/* Three people: three equal columns, photo above the text. */
+.team--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+.team--3 .member { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+.team--3 .member__photo { width: 9rem; }
+@media (max-width: 960px) { .team--3 { grid-template-columns: 1fr; } .team--3 .member { grid-template-columns: 9rem minmax(0, 1fr); } }
 @media (max-width: 860px) { .team { grid-template-columns: 1fr; } }
 @media (max-width: 460px) { .member { grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--s-4); } }
 

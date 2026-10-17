@@ -254,7 +254,7 @@ ${sec({ id: 'models', num: '01', label: 'Engagement models', body: `${head('Thre
 ${band(P, { id: 'class-h', img: 'data-hall', dim: true, label: 'A different facility class', title: 'General M&amp;E practice does not transfer.', text: 'Quality and commissioning are planned from day one, not bolted on at the end.', href: P + 'why-ftr/', linkText: 'Why FTR' })}
 
 ${sec({ id: 'people', tone: 'on-paper', num: '02', label: 'Who delivers', body: `${head('Leadership and workforce track record.', 'Paul Colleary brings 30+ years of mission-critical M&amp;E delivery across Europe (Suir Engineering, Jones Engineering, AM Technical Solutions). The team is Irish, European and Indian, with projects delivered across Europe.')}
-${team(P, false)}` })}
+${team(P, false, ['vishnubhai'])}` })}
 
 ${sec({ id: 'points', tone: 'on-navy', num: '03', label: 'What you get', body: `      <p class="statement" id="__H__">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>` })}
 
@@ -276,7 +276,7 @@ function entry() {
   page({
     slug: 'services/india-market-entry',
     title: 'Set Up in India &mdash; European Company Entry &mdash; FTR',
-    desc: 'FTR helps European companies set up in India: site, permissions, licences, utilities and construction readiness. Gujarat first. Book an India entry call.',
+    desc: 'FTR helps European companies set up in India: site, permissions, licences, utilities and construction readiness. Book an India entry call.',
     schema: [crumbSchema([['Home', ''], ['Services', 'services/'], ['India Market Entry', 'services/india-market-entry/']]),
       { '@type': 'Service', name: 'India Market Entry for Foreign Companies', provider: { '@id': 'https://ftright.com/#organization' }, areaServed: 'India' }],
     body: (P) => `

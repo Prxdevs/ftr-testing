@@ -85,15 +85,18 @@ ${items.map(([label, value, note, src]) => `        <div class="fact reveal">
 const PEOPLE = {
   paul: { slug: 'paul-colleary', name: 'Paul Colleary', initials: 'PC', role: 'Executive Director, Operations &amp; Co-Founder' },
   trushti: { slug: 'trushti-raval', name: 'Trushti Raval', initials: 'TR', role: 'CEO &amp; Director' },
+  vishnubhai: { slug: 'vishnubhai-chaudhari', name: 'Vishnubhai (ND) Chaudhari', initials: 'VC', role: 'Executive Director of Corporate Affairs' },
 };
 const BIO = {
   paul: '30+ years in mission-critical M&amp;E delivery across Ireland, Germany and wider Europe, rising from the trades to Manager of the Planning department. Experience with Suir Engineering, Jones Engineering and AM Technical Solutions. Has spent the last couple of years on a semiconductor project in India, so knows the industry from both European and Indian sides. Keen eye for quality; special interest in cleanroom fundamentals for semiconductor fabs.',
   trushti: 'Electrical engineering degree (India); Business Management (Finance) (England). Past five years supporting European, Irish and British critical-infrastructure programmes &mdash; data centres, semiconductors, battery manufacturing &mdash; across all departments and CSA/MEP disciplines.',
 };
 
-const team = (P, withBio) => `      <ul class="team${withBio ? ' team--bio' : ''}">
+// `extra`: further people (keys of PEOPLE) shown after the two founders, e.g. ['vishnubhai'].
+const team = (P, withBio, extra = []) => `      <ul class="team${withBio ? ' team--bio' : ''}${extra.length ? ' team--3' : ''}">
 ${member(P, { ...PEOPLE.paul, bio: withBio ? BIO.paul : '' })}
-${member(P, { ...PEOPLE.trushti, bio: withBio ? BIO.trushti : '' })}
+${member(P, { ...PEOPLE.trushti, bio: withBio ? BIO.trushti : '' })}${extra.map((k) => `
+${member(P, { ...PEOPLE[k], bio: '' })}`).join('')}
       </ul>`;
 
 // Photographic sector panels (the section the client liked), six of them.
@@ -193,7 +196,7 @@ const route = (countries) => `      <div class="route reveal">
 ${countries.map((c, i) => `          <li${i === countries.length - 1 ? ' class="is-wide"' : ''}>${c}</li>`).join('\n')}
         </ul>
         <span class="route__line" aria-hidden="true"></span>
-        <div class="route__to"><span>Destination</span><strong>India &mdash; Gujarat first</strong><small>Wider state network in development.</small></div>
+        <div class="route__to"><span>Destination</span><strong>India</strong></div>
       </div>`;
 
 const meter = (n, cap) => `<span class="meter" role="img" aria-label="Scope ${n} of 3">${[1, 2, 3].map((i) => `<i${i <= n ? ' class="on"' : ''}></i>`).join('')}<span class="meter__cap">${cap}</span></span>`;
