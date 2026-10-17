@@ -433,9 +433,24 @@ a { color: inherit; }
   transition: background var(--d-base) var(--ease);
 }
 .header.is-stuck::before {
-  background: color-mix(in srgb, var(--c-graphite) 92%, transparent);
-  backdrop-filter: saturate(140%) blur(10px);
+  background: color-mix(in srgb, var(--c-graphite) 97%, transparent);
 }
+
+/* Reading rule: a copper hairline along the stuck header's foot that
+   draws across as the page is read (--progress, written by main.js). */
+.header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(var(--hairline) * -1);
+  height: var(--rule-accent);
+  background: var(--c-accent);
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity var(--d-base) var(--ease);
+}
+.header.is-stuck::after { opacity: 1; }
 
 .header__bar {
   display: flex;
@@ -443,7 +458,10 @@ a { color: inherit; }
   justify-content: space-between;
   gap: var(--s-6);
   height: clamp(4.25rem, 3.6rem + 2.6vw, 5.5rem);
+  transition: height var(--d-base) var(--ease);
 }
+/* Once stuck, the bar tightens so it takes less of the reading area. */
+.header.is-stuck .header__bar { height: var(--s-9); }
 
 /* Generous clear space, with extra room to the right for the
    arrow tail on the R. Brief, Part 4. */
@@ -452,7 +470,8 @@ a { color: inherit; }
   flex: none;
   padding-right: var(--s-4);
 }
-.header__logo img { height: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem); width: auto; }
+.header__logo img { height: clamp(1.75rem, 1.45rem + 1.2vw, 2.5rem); width: auto; transition: height var(--d-base) var(--ease); }
+.header.is-stuck .header__logo img { height: var(--s-6); }
 
 /* --- Nav trigger ------------------------------------------------
    Three bars open the drawer at every viewport. The drawer carries

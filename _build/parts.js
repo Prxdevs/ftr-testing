@@ -72,13 +72,12 @@ const kv = (rows) => `      <dl class="kv">
 ${rows.map(([k, v]) => `        <div><dt>${k}</dt><dd>${v}</dd></div>`).join('\n')}
       </dl>`;
 
-// Sourced stat triple.
+// Stat triple. The fourth field (source) is kept for fact-checking only and is never printed.
 const stats = (items) => `      <dl class="facts facts--3">
 ${items.map(([label, value, note, src]) => `        <div class="fact reveal">
           <dt class="fact__label">${label}</dt>
           <dd class="fact__value fact__value--text">${value}</dd>
           <p class="fact__note">${note}</p>
-          <span class="stat__src">Source: ${src}</span>
         </div>`).join('\n')}
       </dl>`;
 

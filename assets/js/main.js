@@ -105,12 +105,12 @@
     }).observe(sentinel);
   }
 
-  /* --- Spine progress ---
+  /* --- Reading progress (spine and header rule) ---
      One rAF-throttled scroll listener writes a single custom property;
      CSS does the rest. Cheaper than animating elements directly, and it
      keeps the marker and the fill in exact sync. */
   var spine = document.querySelector('.spine');
-  if (spine) {
+  if (spine || header) {
     var ticking = false;
     var update = function () {
       var max = document.documentElement.scrollHeight - window.innerHeight;
