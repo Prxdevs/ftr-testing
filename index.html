@@ -171,21 +171,37 @@
 <main id="main">
 
 
-  <section class="hero" aria-labelledby="h1">
+  <section class="hero hero--rotor" aria-labelledby="h1">
     <div class="hero__media">
-      <img src="assets/img/gmp-isolator-1600.webp"
+      <img class="hero__shot is-on" src="assets/img/cleanroom-corridor-1600.webp"
+           srcset="assets/img/cleanroom-corridor-640.webp 640w, assets/img/cleanroom-corridor-1024.webp 1024w, assets/img/cleanroom-corridor-1600.webp 1600w"
+           sizes="100vw" alt="" width="1600" height="1066" fetchpriority="high" decoding="async">
+      <img class="hero__shot" src="assets/img/data-hall-1600.webp"
+           srcset="assets/img/data-hall-640.webp 640w, assets/img/data-hall-1024.webp 1024w, assets/img/data-hall-1600.webp 1600w"
+           sizes="100vw" alt="" width="1600" height="1066" loading="lazy" decoding="async">
+      <img class="hero__shot" src="assets/img/gmp-isolator-1600.webp"
            srcset="assets/img/gmp-isolator-640.webp 640w, assets/img/gmp-isolator-1024.webp 1024w, assets/img/gmp-isolator-1600.webp 1600w"
-           sizes="100vw" alt="Operators in cleanroom gowns at a stainless-steel isolator line" width="1600" height="1066" fetchpriority="high" decoding="async">
+           sizes="100vw" alt="" width="1600" height="1066" loading="lazy" decoding="async">
     </div>
     <div class="shell hero__inner">
-      <span class="label hero__label reveal">FTR &middot; First Time Right</span>
-      <h1 class="display hero__title" id="h1">Mission-critical facilities. Built First Time Right.</h1>
+      <span class="label hero__label reveal">Irish &amp; European standards &middot; Built in India</span>
+      <h1 class="display hero__title" id="h1">
+        <span class="u-visually-hidden">We build India&rsquo;s semiconductor fabs, data centres and cleanrooms &mdash; right first time.</span>
+        <span aria-hidden="true">We build India&rsquo;s <span class="rotor" data-rotor><span class="rotor__word is-on">semiconductor fabs</span><span class="rotor__word">data centres</span><span class="rotor__word">cleanrooms</span></span> right first time.</span>
+      </h1>
       <p class="hero__desc reveal">Construction, commissioning, skills and India market entry for semiconductor fabs, data centres and cleanrooms.</p>
       <div class="hero__actions reveal">
         <a class="btn btn--primary" href="contact/">Discuss your project</a>
         <a class="btn btn--ghost" href="services/">Explore services</a>
       </div>
     </div>
+    <nav class="hero__strip reveal" aria-label="Our services">
+      <div class="shell strip strip--3">
+        <a class="strip__item" href="services/skills-development/"><span class="strip__num">01</span><span class="strip__name">Skills Development</span></a>
+        <a class="strip__item" href="services/critical-construction/"><span class="strip__num">02</span><span class="strip__name">Critical Construction &amp; Consultancy</span></a>
+        <a class="strip__item" href="services/india-market-entry/"><span class="strip__num">03</span><span class="strip__name">India Market Entry</span></a>
+      </div>
+    </nav>
   </section>
 
   <section class="section on-paper gate" id="intro" aria-labelledby="intro-h">

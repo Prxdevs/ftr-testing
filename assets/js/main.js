@@ -27,6 +27,25 @@
     });
   }
 
+  /* --- Hero facility rotor ---
+     Cycles the facility word and its photograph together. Static
+     (first facility) under reduced motion; the full sentence is in
+     the H1's visually hidden text either way. */
+  var rotor = document.querySelector('[data-rotor]');
+  if (rotor && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var words = rotor.querySelectorAll('.rotor__word');
+    var shots = document.querySelectorAll('.hero__shot');
+    var at = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      words[at].classList.remove('is-on');
+      if (shots[at]) shots[at].classList.remove('is-on');
+      at = (at + 1) % words.length;
+      words[at].classList.add('is-on');
+      if (shots[at]) shots[at].classList.add('is-on');
+    }, 3200);
+  }
+
   /* --- Mobile menu --- */
   var toggle = document.querySelector('.nav__toggle');
   var nav = document.querySelector('.nav');

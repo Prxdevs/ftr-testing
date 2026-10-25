@@ -82,6 +82,13 @@ ${patternChart(P)}
     </div>
   </section>`;
 
+// Hero: the facility word and the photograph change together.
+const HERO_FACILITIES = [
+  ['cleanroom-corridor', 'semiconductor fabs'],
+  ['data-hall', 'data centres'],
+  ['gmp-isolator', 'cleanrooms'],
+];
+
 const MARKET_STATS = [
   ['Foreign direct investment into India', '$58.85bn', 'FY2025-26', 'DPIIT'],
   ['Data centre capacity operational', '1.8 GW', 'In H1 2026; 7+ GW by 2030', 'Savills'],
@@ -98,21 +105,29 @@ function home() {
     stuck: false,
     schema: [{ '@type': 'WebSite', '@id': 'https://ftright.com/#website', url: 'https://ftright.com/', name: 'FTR', publisher: { '@id': 'https://ftright.com/#organization' } }],
     body: (P) => `
-  <section class="hero" aria-labelledby="h1">
+  <section class="hero hero--rotor" aria-labelledby="h1">
     <div class="hero__media">
-      <img src="${P}assets/img/gmp-isolator-1600.webp"
-           srcset="${P}assets/img/gmp-isolator-640.webp 640w, ${P}assets/img/gmp-isolator-1024.webp 1024w, ${P}assets/img/gmp-isolator-1600.webp 1600w"
-           sizes="100vw" alt="${alt('gmp-isolator')}" width="1600" height="1066" fetchpriority="high" decoding="async">
+${HERO_FACILITIES.map(([img], i) => `      <img class="hero__shot${i ? '' : ' is-on'}" src="${P}assets/img/${img}-1600.webp"
+           srcset="${P}assets/img/${img}-640.webp 640w, ${P}assets/img/${img}-1024.webp 1024w, ${P}assets/img/${img}-1600.webp 1600w"
+           sizes="100vw" alt="" width="1600" height="1066"${i ? ' loading="lazy"' : ' fetchpriority="high"'} decoding="async">`).join('\n')}
     </div>
     <div class="shell hero__inner">
-      <span class="label hero__label reveal">FTR &middot; First Time Right</span>
-      <h1 class="display hero__title" id="h1">Mission-critical facilities. Built First Time Right.</h1>
+      <span class="label hero__label reveal">Irish &amp; European standards &middot; Built in India</span>
+      <h1 class="display hero__title" id="h1">
+        <span class="u-visually-hidden">We build India&rsquo;s semiconductor fabs, data centres and cleanrooms &mdash; right first time.</span>
+        <span aria-hidden="true">We build India&rsquo;s <span class="rotor" data-rotor>${HERO_FACILITIES.map(([, w], i) => `<span class="rotor__word${i ? '' : ' is-on'}">${w}</span>`).join('')}</span> right first time.</span>
+      </h1>
       <p class="hero__desc reveal">Construction, commissioning, skills and India market entry for semiconductor fabs, data centres and cleanrooms.</p>
       <div class="hero__actions reveal">
         <a class="btn btn--primary" href="${P}contact/">Discuss your project</a>
         <a class="btn btn--ghost" href="${P}services/">Explore services</a>
       </div>
     </div>
+    <nav class="hero__strip reveal" aria-label="Our services">
+      <div class="shell strip strip--3">
+${SERVICES.map((s, i) => `        <a class="strip__item" href="${P}${s.href}"><span class="strip__num">0${i + 1}</span><span class="strip__name">${s.title}</span></a>`).join('\n')}
+      </div>
+    </nav>
   </section>
 
 ${sec({ id: 'intro', tone: 'on-paper', label: 'Why now', body: `      <p class="statement" id="__H__">India is building its semiconductor and data centre future. FTR brings Irish and European mission-critical execution standards to build it <strong>right first time</strong>.</p>` })}

@@ -176,6 +176,42 @@
   .strip__name { font-size: var(--fs-xs); }
 }
 
+/* --- Rotating facility hero ---------------------------------------
+   "We build India's [semiconductor fabs | data centres | cleanrooms]
+   right first time." The facility word is uncovered by the house wipe
+   and underlined by a drawn rule; the photograph behind it cross-fades
+   to the same facility. Words share one grid cell, on a line of their
+   own, so nothing around them reflows. */
+.hero--rotor .hero__shot {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity var(--d-slow) var(--ease);
+}
+.hero--rotor .hero__shot.is-on { opacity: 1; }
+
+.rotor { display: grid; color: var(--c-accent-bright); }
+.rotor__word {
+  grid-area: 1 / 1; justify-self: start; position: relative;
+  clip-path: inset(-0.1em 100% -0.3em -0.05em);
+  transition: clip-path var(--d-wipe) var(--ease);
+}
+.rotor__word.is-on { clip-path: inset(-0.1em -0.1em -0.3em -0.05em); }
+.rotor__word::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0.02em;
+  height: var(--rule-accent); background: var(--c-accent);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform var(--d-release) var(--ease);
+}
+.rotor__word.is-on::after { transform: scaleX(1); transition-delay: var(--d-base); }
+
+.strip--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.strip--3 .strip__name { font-size: var(--fs-body); }
+@media (max-width: 860px) {
+  .strip--3 { grid-template-columns: 1fr; }
+  .strip--3 .strip__item { flex-direction: row; align-items: baseline; gap: var(--s-4); padding: var(--s-3) 0; }
+  .strip--3 .strip__item::before { display: none; }
+  .strip--3 .strip__item + .strip__item { border-top: var(--hairline) solid var(--c-graphite-line); }
+}
+
 
 /* ============================================================
    02 · WHAT FTR IS
