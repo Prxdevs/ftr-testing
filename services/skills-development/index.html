@@ -18,13 +18,10 @@
 <link rel="icon" href="../../assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../../assets/img/favicon-180.png">
 
+<link rel="preload" href="../../assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="../../assets/css/fonts.css">
-<link rel="stylesheet" href="../../assets/css/tokens.css">
-<link rel="stylesheet" href="../../assets/css/base.css">
-<link rel="stylesheet" href="../../assets/css/brief.css">
-
+<link rel="stylesheet" href="../../assets/css/site.css">
 
 <script type="application/ld+json">
 {
@@ -46,7 +43,7 @@
         {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "general@ftright.com"
+          "email": "info@ftright.com"
         }
       ]
     },
@@ -89,6 +86,12 @@
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="spine" aria-hidden="true">
+  <span class="spine__rule"></span>
+  <span class="spine__fill"></span>
+  <img class="spine__arrow" src="../../assets/img/ftr-arrow-24.png" srcset="../../assets/img/ftr-arrow-24.png 1x, ../../assets/img/ftr-arrow-48.png 2x" alt="" width="24" height="16">
+</div>
 
 <header class="header is-stuck">
   <div class="shell header__bar">
@@ -192,9 +195,9 @@
 
   <section class="phero" aria-labelledby="h1">
     <div class="phero__photo">
-      <img src="../../assets/img/welding-training-1600.webp"
-           srcset="../../assets/img/welding-training-640.webp 640w, ../../assets/img/welding-training-1024.webp 1024w, ../../assets/img/welding-training-1600.webp 1600w"
-           sizes="100vw" alt="Two welders in helmets working at a bench" width="1600" height="1066" fetchpriority="high" decoding="async">
+      <img src="../../assets/img/electrician-panel-1600.webp"
+           srcset="../../assets/img/electrician-panel-640.webp 640w, ../../assets/img/electrician-panel-1024.webp 1024w, ../../assets/img/electrician-panel-1600.webp 1600w"
+           sizes="100vw" alt="Electrician drilling inside an electrical panel" width="1600" height="1066" fetchpriority="high" decoding="async">
     </div>
     <div class="shell phero__inner">
       <nav class="crumbs" aria-label="Breadcrumb">
@@ -204,9 +207,9 @@
         </ol>
       </nav>
       <span class="label phero__label reveal">MEP &amp; Cleanroom Skills Development</span>
-      <h1 class="display phero__title wipe" id="h1">India&rsquo;s first structured M&amp;E construction and commissioning certification programme.</h1>
+      <h1 class="display phero__title" id="h1">India&rsquo;s first structured M&amp;E construction and commissioning certification programme.</h1>
       <p class="phero__lede reveal">India is building chip designers and fab operators. FTR trains the specialist M&amp;E trades who physically build those facilities &mdash; piping, electrical, HVAC, cleanroom fit-out and commissioning &mdash; to the standard semiconductor and data centre projects demand.</p>
-      <div class="phero__actions reveal"><a class="btn btn--primary" href="../../careers/#partner">Partner with FTR</a><a class="btn btn--ghost" href="../../careers/#partner">Upskill your workforce</a><a class="btn btn--ghost" href="../../careers/#train">Register interest</a></div>
+      <div class="phero__actions reveal"><a class="btn btn--primary" href="../../careers/#skills">Partner with FTR</a><a class="btn btn--ghost" href="../../careers/#skills">Upskill your workforce</a><a class="btn btn--ghost" href="../../careers/#skills">Register interest</a></div>
     </div>
   </section>
 
@@ -222,10 +225,10 @@
         </div>
       </div>
       <dl class="facts">
-        <div class="fact reveal"><dt class="fact__label">Programmes</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span></dd><p class="fact__note">Across the trades</p></div>
-        <div class="fact reveal"><dt class="fact__label">Certification tiers</dt><dd class="fact__value"><span class="count" data-to="3" data-pad="2">03</span></dd><p class="fact__note">Foundation, Trade Specialist, Deployment-Ready Diploma</p></div>
-        <div class="fact reveal"><dt class="fact__label">Foundation for all</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span><span class="fact__unit">weeks</span></dd><p class="fact__note">Cleanroom Construction Fundamentals (6) + EHS Safe-Site Pass (3)</p></div>
-        <div class="fact reveal"><dt class="fact__label">Core trade pathway</dt><dd class="fact__value">~16<span class="fact__unit">weeks</span></dd><p class="fact__note">Commissioning ~8 weeks. 360&ndash;1,120 hours per pathway</p></div>
+        <div class="fact reveal"><dt class="fact__label">Programmes</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span></dd><dd class="fact__note">Across the trades</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Certification tiers</dt><dd class="fact__value"><span class="count" data-to="3" data-pad="2">03</span></dd><dd class="fact__note">Foundation, Trade Specialist, Deployment-Ready Diploma</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Foundation for all</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span><span class="fact__unit">weeks</span></dd><dd class="fact__note">Cleanroom Construction Fundamentals (6) + EHS Safe-Site Pass (3)</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Core trade pathway</dt><dd class="fact__value">~16<span class="fact__unit">weeks</span></dd><dd class="fact__note">Commissioning ~8 weeks. 360&ndash;1,120 hours per pathway</dd></div>
       </dl>
     </div>
   </section>
@@ -243,35 +246,35 @@
       </div>
       <ul class="ptiles ptiles--5">
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../../assets/img/process-valves-1024.webp" srcset="../../assets/img/process-valves-640.webp 640w, ../../assets/img/process-valves-1024.webp 1024w, ../../assets/img/process-valves-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Stainless-steel process pipework, valves and pumps" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../../assets/img/pipe-welder-1024.webp" srcset="../../assets/img/pipe-welder-640.webp 640w, ../../assets/img/pipe-welder-1024.webp 1024w, ../../assets/img/pipe-welder-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Welder joining a steel pipe on site" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 9h12a4 4 0 014 4v6a4 4 0 004 4h6"/><path d="M3 5v8M29 19v8"/></svg>
             <h3 class="ptile__title">Process and utility piping</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../../assets/img/distribution-board-1024.webp" srcset="../../assets/img/distribution-board-640.webp 640w, ../../assets/img/distribution-board-1024.webp 1024w, ../../assets/img/distribution-board-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Circuit breakers in a distribution board" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../../assets/img/breaker-wiring-1024.webp" srcset="../../assets/img/breaker-wiring-640.webp 640w, ../../assets/img/breaker-wiring-1024.webp 1024w, ../../assets/img/breaker-wiring-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Wiring and breakers in an electrical installation" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 3L7 18h8l-1 11 11-15h-8z"/></svg>
             <h3 class="ptile__title">Electrical</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../../assets/img/cable-containment-1024.webp" srcset="../../assets/img/cable-containment-640.webp 640w, ../../assets/img/cable-containment-1024.webp 1024w, ../../assets/img/cable-containment-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Insulated ductwork running overhead" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../../assets/img/roof-ventilation-1024.webp" srcset="../../assets/img/roof-ventilation-640.webp 640w, ../../assets/img/roof-ventilation-1024.webp 1024w, ../../assets/img/roof-ventilation-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Ventilation units on a building roof" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="2"/><path d="M16 14c0-5 1-8 4-9M18 17c4 3 4 6 3 9M14 17c-5 0-9 2-10 4"/></svg>
             <h3 class="ptile__title">HVAC</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../../assets/img/gmp-isolator-1024.webp" srcset="../../assets/img/gmp-isolator-640.webp 640w, ../../assets/img/gmp-isolator-1024.webp 1024w, ../../assets/img/gmp-isolator-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Operators in cleanroom gowns at a stainless-steel isolator line" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../../assets/img/cleanroom-corridor-1024.webp" srcset="../../assets/img/cleanroom-corridor-640.webp 640w, ../../assets/img/cleanroom-corridor-1024.webp 1024w, ../../assets/img/cleanroom-corridor-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Technician in a cleanroom suit walking through a cleanroom bay" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="24" height="22" rx="1.5"/><path d="M4 12h24M4 19h24M12 5v22M20 5v22"/></svg>
             <h3 class="ptile__title">Cleanroom fit-out</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../../assets/img/panel-technician-1024.webp" srcset="../../assets/img/panel-technician-640.webp 640w, ../../assets/img/panel-technician-1024.webp 1024w, ../../assets/img/panel-technician-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Technician testing an electrical panel with a multimeter" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../../assets/img/control-room-1024.webp" srcset="../../assets/img/control-room-640.webp 640w, ../../assets/img/control-room-1024.webp 1024w, ../../assets/img/control-room-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Engineers working at screens in a control room" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 22a11 11 0 1122 0"/><path d="M16 22l5-7"/><circle cx="16" cy="22" r="1.5"/><path d="M8 27h16"/></svg>
             <h3 class="ptile__title">Commissioning</h3>
@@ -334,16 +337,16 @@
         <div><dt>AI Infrastructure layer</dt><dd>Across programmes, plus DCE-AI (AI Infrastructure Engineering) at Tier 3.</dd></div>
         <div><dt>Taught by</dt><dd>Resident Irish and European master trainers with live semiconductor project heritage (Ireland&rsquo;s Intel Leixlip / Fab 34 track record).</dd></div>
         <div><dt>Who can enrol</dt><dd>ITI pass-outs, diploma holders, B.E./B.Tech graduates, experienced site workers.</dd></div>
-        <div><dt>Sectors served</dt><dd>Semiconductor fabs, ATMP/OSAT, hyperscale data centres, pharma cleanrooms, EV/battery gigafactories, green hydrogen.</dd></div>
+        <div><dt>Sectors served</dt><dd>Semiconductor fabs, ATMP/OSAT, hyperscale and AI data centres, pharma and biotech, medical devices and hospitals, EV and battery gigafactories, renewables and green hydrogen, transmission and substations, defence and aerospace, electronics and display.</dd></div>
       </dl>
     </div>
   </section>
 
   <section class="band" aria-labelledby="trainer-h">
     <div class="figure band__media band__media--dim">
-      <img src="../../assets/img/panel-technician-1600.webp"
-           srcset="../../assets/img/panel-technician-640.webp 640w, ../../assets/img/panel-technician-1024.webp 1024w, ../../assets/img/panel-technician-1600.webp 1600w"
-           sizes="100vw" alt="Technician testing an electrical panel with a multimeter" width="1600" height="1066" loading="lazy" decoding="async">
+      <img src="../../assets/img/robotics-lab-1600.webp"
+           srcset="../../assets/img/robotics-lab-640.webp 640w, ../../assets/img/robotics-lab-1024.webp 1024w, ../../assets/img/robotics-lab-1600.webp 1600w"
+           sizes="100vw" alt="Robotic arms on a production line in a training lab" width="1600" height="1066" loading="lazy" decoding="async">
     </div>
     <div class="shell band__inner">
       <div class="band__copy">
@@ -359,11 +362,11 @@
     <div class="shell">
       
       <div class="cta cta--after reveal">
-        <h2 class="h1 cta__title wipe" id="cta-h">Train with FTR, or partner with us.</h2>
+        <h2 class="h1 cta__title wipe" id="cta-h">Questions about skills development?</h2>
         <p class="lead cta__text">Government and institutions, contractors, and trainees each have their own route.</p>
         <div class="cta__actions">
-          <a class="btn btn--primary" href="../../careers/#train">Register interest</a>
-          <a class="btn btn--outline" href="../../careers/#partner">Partner with FTR</a>
+          <a class="btn btn--primary" href="../../careers/#skills">Register interest</a>
+          <a class="btn btn--outline" href="../../careers/#skills">Partner with FTR</a>
         </div>
       </div>
     </div>
@@ -382,7 +385,7 @@
              srcset="../../assets/img/ftr-logo-28.png 1x, ../../assets/img/ftr-logo-56.png 2x"
              alt="FTR — First Time Right" width="79" height="28" loading="lazy">
         <p class="footer__about">Mission-critical construction, commissioning, skills and India market entry.</p>
-        <p class="footer__contact"><a href="mailto:general@ftright.com">general@ftright.com</a></p>
+        <p class="footer__contact"><a href="mailto:info@ftright.com">info@ftright.com</a></p>
       </div>
 
       <div class="footer__col">

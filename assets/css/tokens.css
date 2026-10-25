@@ -18,8 +18,8 @@
      7. MOTION       durations and easing
      8. DEPTH        shadows and corner radius
 
-   Brief palette "Copper Precision": graphite #1B1E24, copper #B87333,
-   steel #6B7684, light background #F2F3F5. Transparent tints in the
+   Palette: the LIVE site's navy + cyan (graphite tokens now hold navy,
+   accent tokens hold cyan; names kept so no other file changes). Transparent tints in the
    other stylesheets are made with color-mix() from these tokens.
 
    Derived from the client-approved business card.
@@ -35,32 +35,32 @@
      not interchangeable. */
 
   /* Graphite family — hero, section breaks, footer */
-  --c-graphite:            #1B1E24;   /* primary panel */
-  --c-graphite-deep:       #121418;   /* footer, deepest ground */
-  --c-graphite-soft:       #252932;   /* raised block on navy */
-  --c-graphite-line:       #383D47;   /* hairline rule on navy */
+  --c-graphite:            #0D1B2A;   /* primary panel */
+  --c-graphite-deep:       #081420;   /* footer, deepest ground */
+  --c-graphite-soft:       #14263A;   /* raised block on navy */
+  --c-graphite-line:       #22384E;   /* hairline rule on navy */
 
   /* Reading surfaces */
   --c-white:           #FFFFFF;
   --c-black:           #000000;   /* shadows only */
   --c-error:           #B3261E;   /* form validation */
-  --c-paper:           #F2F3F5;   /* tinted alternate section */
-  --c-rule:            #DFE2E6;   /* hairline rule on white */
+  --c-paper:           #F5F8FA;   /* tinted alternate section */
+  --c-rule:            #E2E8ED;   /* hairline rule on white */
 
   /* Ink */
-  --c-ink:             #1B1E24;   /* body on white      — 15.9:1 AAA */
-  --c-ink-mute:        #5A626E;   /* secondary on white —  6.1:1 AA  */
-  --c-ink-faint:       #6B7684;   /* labels on white    —  4.6:1 AA */
+  --c-ink:             #0D1B2A;   /* body on white      — 15.9:1 AAA */
+  --c-ink-mute:        #4F6377;   /* secondary on white —  6.1:1 AA  */
+  --c-ink-faint:       #56697C;   /* labels on white    —  4.6:1 AA */
 
   /* Ink reversed */
-  --c-on-navy:         #ECEEF1;   /* body on navy       — 14.2:1 AAA */
-  --c-on-navy-mute:    #A3AAB5;   /* secondary on navy  —  6.4:1 AA  */
+  --c-on-navy:         #E9EFF4;   /* body on navy       — 14.2:1 AAA */
+  --c-on-navy-mute:    #9AAEBF;   /* secondary on navy  —  6.4:1 AA  */
 
   /* Copper — accent only. */
-  --c-accent:            #B87333;   /* brand copper; rules, buttons, on graphite — 4.5:1 AA */
-  --c-accent-bright:     #D98F4E;   /* highlight, hover, arrows, text on graphite */
-  --c-accent-deep:       #8F5826;   /* pressed / darkest copper */
-  --c-accent-ink:        #8A5223;   /* LINKS AND LABELS ON WHITE ONLY — 5.8:1 AA */
+  --c-accent:            #00B4E6;   /* brand copper; rules, buttons, on graphite — 4.5:1 AA */
+  --c-accent-bright:     #2ED8FF;   /* highlight, hover, arrows, text on graphite */
+  --c-accent-deep:       #0A6FD0;   /* pressed / darkest copper */
+  --c-accent-ink:        #006C99;   /* LINKS AND LABELS ON WHITE ONLY — 5.8:1 AA */
 
   /* --- 2. TEXT ROLES ---------------------------------------------
      What each kind of text is coloured. Components use these roles, not
@@ -102,7 +102,7 @@
      Self-hosted, Latin subset, only the weights below are loaded.
      Do not add a weight without adding the font file. */
 
-  --f-display: "Inter", "Inter Fallback", "Segoe UI", system-ui, -apple-system, sans-serif;   /* one family across the site (brief) */
+  --f-display: "Space Grotesk", "Space Grotesk Fallback", "Segoe UI", system-ui, sans-serif;   /* headings, as on the live site */
   --f-body:    "Inter", "Inter Fallback", "Segoe UI", system-ui, -apple-system, sans-serif;
 
   --fw-regular:  400;
@@ -116,21 +116,21 @@
      site is dense and long, so the scale is deliberately shallow at
      body sizes and only opens up at display sizes. */
 
-  --fs-display: clamp(2.75rem,  1.35rem + 6.20vw, 6.50rem);  /* hero only */
-  --fs-h1:      clamp(2.25rem,  1.38rem + 3.85vw, 4.25rem);
-  --fs-h2:      clamp(1.75rem,  1.27rem + 2.15vw, 2.875rem);
-  --fs-h3:      clamp(1.25rem,  1.06rem + 0.85vw, 1.75rem);
-  --fs-h4:      clamp(1.0625rem,0.99rem + 0.33vw, 1.25rem);
-  --fs-lead:    clamp(1.125rem, 1.02rem + 0.47vw, 1.4375rem); /* standfirst */
-  --fs-body:    clamp(1rem,     0.97rem + 0.14vw, 1.0625rem);
-  --fs-sm:      0.9375rem;
-  --fs-xs:      0.8125rem;
-  --fs-card:    clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);   /* card, tile and person titles */
-  --fs-title:   clamp(2.25rem, 1.5rem + 2vw, 3.5rem);       /* panel and section-intro titles */
-  --fs-title-lg:clamp(2.5rem, 1.8rem + 2.6vw, 3.75rem);
-  --fs-statement:clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);     /* pull statements */
-  --fs-stat:    clamp(2.5rem, 1.7rem + 3.4vw, 4rem);        /* big numerals */
-  --fs-stat-sm: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);     /* numerals that are words or ranges */
+  --fs-display: clamp(2.4rem,   1.45rem + 4.10vw, 4.75rem);  /* hero only */
+  --fs-h1:      clamp(2rem,     1.35rem + 2.70vw, 3.25rem);
+  --fs-h2:      clamp(1.6rem,   1.25rem + 1.50vw, 2.375rem);
+  --fs-h3:      clamp(1.15rem,  1.04rem + 0.50vw, 1.5rem);
+  --fs-h4:      clamp(1rem,     0.96rem + 0.20vw, 1.125rem);
+  --fs-lead:    clamp(1.0625rem, 1rem + 0.28vw, 1.25rem); /* standfirst */
+  --fs-body:    clamp(0.9375rem, 0.92rem + 0.08vw, 1rem);
+  --fs-sm:      0.875rem;
+  --fs-xs:      0.78rem;
+  --fs-card:    clamp(1.125rem, 1.04rem + 0.35vw, 1.375rem);   /* card, tile and person titles */
+  --fs-title:   clamp(1.85rem, 1.4rem + 1.4vw, 2.625rem);       /* panel and section-intro titles */
+  --fs-title-lg:clamp(2.05rem, 1.5rem + 1.8vw, 2.875rem);
+  --fs-statement:clamp(1.3rem, 1.08rem + 0.95vw, 1.95rem);     /* pull statements */
+  --fs-stat:    clamp(2.1rem, 1.6rem + 2.1vw, 3.125rem);        /* big numerals */
+  --fs-stat-sm: clamp(1.3rem, 1.08rem + 0.95vw, 1.85rem);     /* numerals that are words or ranges */
   --fs-micro:   0.625rem;   /* chart axis labels on phones only */
   --fs-label:   0.75rem;    /* letterspaced caps — section refs */
   --fs-gate:    clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem); /* hold-point numerals */
@@ -139,7 +139,7 @@
   --lh-tight:   1.08;
   --lh-heading: 1.18;
   --lh-lead:    1.46;
-  --lh-body:    1.68;   /* generous — this copy is long */
+  --lh-body:    1.65;   /* generous — this copy is long */
   --lh-label:   1.4;
 
   /* Letterspacing. Large type tightens, caps open up.
@@ -173,8 +173,8 @@
   --s-7:   2.5rem;    --s-8:   3rem;      --s-9:  4rem;
   --s-10:  5rem;      --s-11:  6rem;      --s-12: 8rem;
 
-  --s-section:       clamp(3.5rem, 2.2rem + 5vw, 7rem);
-  --s-section-tight: clamp(2.75rem, 2rem + 3.2vw, 4.5rem);
+  --s-section:       clamp(3rem, 2rem + 3.6vw, 5.5rem);
+  --s-section-tight: clamp(2.25rem, 1.8rem + 2.2vw, 3.75rem);
 
 
   /* --- 5. LAYOUT ------------------------------------------------
@@ -182,8 +182,8 @@
      cramped on a phone or adrift on a 27" display. */
 
   --page-max:    1440px;
-  --content-max: 1180px;
-  --gutter:      clamp(1.25rem, 0.72rem + 2.35vw, 4.5rem);
+  --content-max: 1240px;
+  --gutter:      clamp(1.25rem, -1rem + 6vw, 5.5rem);   /* wide enough on desktop to clear the spine */
   --grid-gap:    clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
   --cols:        12;
 

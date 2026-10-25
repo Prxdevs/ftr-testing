@@ -20,5 +20,9 @@ module.exports = {
   globe: wrap('<circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c-4 4-4 20 0 24M16 4c4 4 4 20 0 24"/>'),
   people: wrap('<circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3.2"/><path d="M3 27c0-5 3.5-8 8-8s8 3 8 8"/><path d="M20 20c4 0 9 2 9 7"/>'),
   link: wrap('<path d="M13 19l6-6"/><path d="M11 15l-3 3a4.2 4.2 0 006 6l3-3"/><path d="M21 17l3-3a4.2 4.2 0 00-6-6l-3 3"/>'),
+  medical: wrap('<rect x="5" y="5" width="22" height="22" rx="2"/><path d="M16 10v12M10 16h12"/>'),
+  transmission: wrap('<path d="M16 3v26M9 29l7-26 7 26"/><path d="M5 11h22M8 18h16"/><path d="M5 11l3 7M27 11l-3 7"/>'),
+  defence: wrap('<path d="M16 3l11 4v8c0 7-5 11-11 14C10 26 5 22 5 15V7z"/><path d="M11 16l4 4 6-8"/>'),
+  electronics: wrap('<rect x="3" y="6" width="26" height="17" rx="1.5"/><path d="M12 28h8M16 23v5"/><path d="M8 14l3-3 3 4 3-5 3 4"/>'),
   hydrogen: wrap('<circle cx="10" cy="19" r="5"/><circle cx="22" cy="19" r="5"/><path d="M15 19h2"/><path d="M16 4c-2.5 3-4 5-4 7a4 4 0 008 0c0-2-1.5-4-4-7z"/>'),
 };

@@ -22,7 +22,7 @@ ${crumbs.map(([t, h]) => (h ? `          <li><a href="${P}${h}">${t}</a></li>` :
         </ol>
       </nav>` : ''}
       <span class="label phero__label reveal">${label}</span>
-      <h1 class="display phero__title wipe" id="${h1id}">${title}</h1>
+      <h1 class="display phero__title" id="${h1id}">${title}</h1>
       <p class="phero__lede reveal">${lede}</p>${actions ? `
       <div class="phero__actions reveal">${actions}</div>` : ''}
     </div>
@@ -45,7 +45,7 @@ const band = (P, { id, img, label, title, text, href, linkText, dim = false }) =
   </section>`;
 
 // Closing call to action. `to` defaults to the contact page; `type` preselects the enquiry type.
-const cta = (P, { title = 'Let&rsquo;s build it right first time.', text = 'Tell us about the facility, the programme and the constraint. A member of the FTR team will reply.', primary = 'Discuss your project', type = '', href = '', secondary = 'general@ftright.com', secondaryHref = 'mailto:general@ftright.com' } = {}) => `<div class="cta cta--after reveal">
+const cta = (P, { title = 'Let&rsquo;s build it right first time.', text = 'Tell us about the facility, the programme and the constraint. A member of the FTR team will reply.', primary = 'Discuss your project', type = '', href = '', secondary = 'info@ftright.com', secondaryHref = 'mailto:info@ftright.com' } = {}) => `<div class="cta cta--after reveal">
         <h2 class="h1 cta__title wipe" id="cta-h">${title}</h2>
         <p class="lead cta__text">${text}</p>
         <div class="cta__actions">

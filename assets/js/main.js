@@ -218,7 +218,7 @@
           form.reset();
         })
         .catch(function () {
-          say('That did not send. Please email general@ftright.com, or try again in a moment.', 'is-error');
+          say('That did not send. Please email info@ftright.com, or try again in a moment.', 'is-error');
         })
         .then(function () { btn.disabled = false; });
     });

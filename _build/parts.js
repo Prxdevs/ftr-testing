@@ -77,13 +77,13 @@ const stats = (items) => `      <dl class="facts facts--3">
 ${items.map(([label, value, note, src]) => `        <div class="fact reveal">
           <dt class="fact__label">${label}</dt>
           <dd class="fact__value fact__value--text">${value}</dd>
-          <p class="fact__note">${note}</p>
+          <dd class="fact__note">${note}</dd>
         </div>`).join('\n')}
       </dl>`;
 
 const PEOPLE = {
-  paul: { slug: 'paul-colleary', name: 'Paul Colleary', initials: 'PC', role: 'Executive Director, Operations &amp; Co-Founder' },
-  trushti: { slug: 'trushti-raval', name: 'Trushti Raval', initials: 'TR', role: 'CEO &amp; Director' },
+  paul: { slug: 'paul-colleary', name: 'Paul Colleary', initials: 'PC', role: 'Executive Director, Operations' },
+  trushti: { slug: 'trushti-raval', name: 'Trushti Raval', initials: 'TR', role: 'Executive Director &amp; CEO' },
   vishnubhai: { slug: 'vishnubhai-chaudhari', name: 'Vishnubhai (ND) Chaudhari', initials: 'VC', role: 'Executive Director of Corporate Affairs' },
 };
 const BIO = {
@@ -91,34 +91,52 @@ const BIO = {
   trushti: 'Electrical engineering degree (India); Business Management (Finance) (England). Past five years supporting European, Irish and British critical-infrastructure programmes &mdash; data centres, semiconductors, battery manufacturing &mdash; across all departments and CSA/MEP disciplines.',
 };
 
-// `extra`: further people (keys of PEOPLE) shown after the two founders, e.g. ['vishnubhai'].
-const team = (P, withBio, extra = []) => `      <ul class="team${withBio ? ' team--bio' : ''}${extra.length ? ' team--3' : ''}">
+const team = (P, withBio) => `      <ul class="team${withBio ? ' team--bio' : ''}">
 ${member(P, { ...PEOPLE.paul, bio: withBio ? BIO.paul : '' })}
-${member(P, { ...PEOPLE.trushti, bio: withBio ? BIO.trushti : '' })}${extra.map((k) => `
-${member(P, { ...PEOPLE[k], bio: '' })}`).join('')}
+${member(P, { ...PEOPLE.trushti, bio: withBio ? BIO.trushti : '' })}
+${member(P, { ...PEOPLE.vishnubhai, bio: '' })}
       </ul>`;
 
 // Photographic sector panels (the section the client liked), six of them.
 // Licensed stock stands in until FTR supplies its own photography.
+// Every photograph appears once on the whole site, so the Home panels and the Sectors page
+// cards draw from two different sets.
+const W3 = [640, 1024, 1600];
 const SECTOR_IMG = {
   semiconductor: ['sector-semiconductor', [480, 800, 1200]],
-  'atmp-osat': ['panel-technician', [640, 1024, 1600]],
+  'atmp-osat': ['chip-tray', W3],
   'data-centres': ['sector-data-centres', [480, 800, 1200]],
-  pharma: ['sector-pharma', [480, 800, 1200]],
-  'ev-battery': ['switchgear-hall', [640, 1024, 1600]],
-  'green-hydrogen': ['pipe-runs', [640, 1024, 1600]],
+  pharma: ['blister-packs', W3],
+  medical: ['operating-room', W3],
+  'ev-battery': ['battery-cells', W3],
+  renewables: ['wind-solar', W3],
+  transmission: ['pylon-lines', W3],
+  'defence-aerospace': ['jet-hangar', W3],
+  electronics: ['boards-line', W3],
 };
-const sectorImg = (P, id, attrs = '') => {
-  const [name, w] = SECTOR_IMG[id];
+const SECTOR_PAGE_IMG = {
+  semiconductor: ['circuit-board', W3],
+  'atmp-osat': ['bench-technician', W3],
+  'data-centres': ['server-closeup', W3],
+  pharma: ['lab-gowned', W3],
+  medical: ['surgery-suite', W3],
+  'ev-battery': ['conveyor-line', W3],
+  renewables: ['process-tanks', W3],
+  transmission: ['towers-field', W3],
+  'defence-aerospace': ['rocket-assembly', W3],
+  electronics: ['display-panel', W3],
+};
+const sectorImg = (P, id, attrs = '', set = SECTOR_IMG) => {
+  const [name, w] = set[id];
   const f = (n) => `${P}assets/img/${name}-${n}.webp`;
   return `<img src="${f(w[1])}" srcset="${w.map((n) => `${f(n)} ${n}w`).join(', ')}" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 34vw, 30vw" alt="${alt(name)}" width="${w[1]}" height="${Math.round(w[1] * 1.5)}" loading="lazy" decoding="async"${attrs}>`;
 };
 
 // `num` is the section number on the page that carries the panels; `title` and `text`
 // can be re-worded per page. The panels themselves carry an icon, not a second number.
-const sectorPanels = (P, sectors, { num = '02', title = 'Sectors we serve.', text = 'Six facility classes, each linking to the relevant services.' } = {}) => `  <section class="section sectors-section gate" id="sectors" aria-labelledby="sectors-h">
+const sectorPanels = (P, sectors, { num = '02', title = 'Sectors we serve.', text = 'Ten industries, each linking to the relevant services.' } = {}) => `  <section class="section sectors-section gate" id="sectors" aria-labelledby="sectors-h">
     <div class="shell">
-      <div class="sectors sectors--six">
+      <div class="sectors sectors--ten">
         <div class="sectors__intro">
           <div class="sectors__head">
             <span class="gate__num">${num}</span>
@@ -139,7 +157,7 @@ ${sectors.map(([id, ic, name, role]) => `          <li class="sector">
                 <h3 class="sector__title wipe">${name}</h3>
               </div>
               <div class="sector__foot">
-                <p class="sector__desc">${role}</p>
+                ${role ? `<p class="sector__desc">${role}</p>` : ''}
                 <span class="circle" aria-hidden="true">${arrowImg(P)}</span>
               </div>
             </a>
@@ -200,4 +218,4 @@ ${countries.map((c, i) => `          <li${i === countries.length - 1 ? ' class="
 
 const meter = (n, cap) => `<span class="meter" role="img" aria-label="Scope ${n} of 3">${[1, 2, 3].map((i) => `<i${i <= n ? ' class="on"' : ''}></i>`).join('')}<span class="meter__cap">${cap}</span></span>`;
 
-module.exports = { tiers, bars, trades, flow, route, meter, sec, head, more, cards3, member, kv, stats, team, PEOPLE, BIO, crumbSchema, icons, sectorPanels, sectorImg, ptiles, photo };
+module.exports = { tiers, bars, trades, flow, route, meter, sec, head, more, cards3, member, kv, stats, team, PEOPLE, BIO, crumbSchema, icons, sectorPanels, sectorImg, SECTOR_PAGE_IMG, ptiles, photo };

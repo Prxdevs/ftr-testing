@@ -2,8 +2,8 @@
 const { page } = require('./layout');
 const { hero, ctaSection } = require('./ui');
 const { arrowImg } = require('./lib');
-const { sec, head, team, crumbSchema, icons, sectorImg } = require('./parts');
-const { SECTORS, whyTiles } = require('./pages-a');
+const { sec, head, team, crumbSchema, icons, sectorImg, SECTOR_PAGE_IMG } = require('./parts');
+const { SECTORS, whyRows } = require('./pages-a');
 
 const ACCESS_KEY = '78b7295d-7517-436d-8d98-2f7b10746d54';
 
@@ -65,20 +65,20 @@ function sectors() {
   page({
     slug: 'sectors',
     title: 'Sectors We Serve &mdash; Fabs, Data Centres, Cleanrooms | FTR',
-    desc: 'FTR serves semiconductor fabs, ATMP/OSAT units, hyperscale data centres, pharma cleanrooms, EV/battery gigafactories and green hydrogen facilities in India.',
+    desc: 'FTR serves ten industries in India: semiconductor fabs, ATMP/OSAT, data centres, pharma, medical, EV and battery, renewables, transmission, aerospace and electronics.',
     schema: [crumbSchema([['Home', ''], ['Sectors', 'sectors/']])],
     body: (P) => `
-${hero({ P, label: 'Sectors', title: 'Sectors we serve.', lede: 'Six facility classes. Each links to the services that apply.', photo: 'data-hall', short: true })}
+${hero({ P, label: 'Sectors', title: 'Sectors we serve.', lede: 'Ten industries. Each links to the services that apply.', photo: 'network-rack', short: true })}
 
-${sec({ id: 'six', num: '01', label: 'Six facility classes', body: `      <ul class="cards3">
+${sec({ id: 'ten', num: '01', label: 'Ten industries', body: `      <ul class="cards3 cards3--ten">
 ${SECTORS.map(([id, ic, name, role], i) => `        <li class="card3 card3--static card3--photo reveal" id="${id}">
           <div class="card3__box">
-            <div class="card3__photo">${sectorImg(P, id)}</div>
+            <div class="card3__photo">${sectorImg(P, id, '', SECTOR_PAGE_IMG)}</div>
             <div class="card3__body">
             ${icons[ic]}
-            <span class="card3__num">0${i + 1}</span>
+            <span class="card3__num">${String(i + 1).padStart(2, "0")}</span>
             <h2 class="card3__title">${name}</h2>
-            <p class="card3__text">${role}</p>
+            ${role ? `<p class="card3__text">${role}</p>` : ''}
             <p class="card3__links">${(links[id] || dflt).map(([t, h]) => `<a class="link" href="${P}${h}">${t} ${arrowImg(P)}</a>`).join('')}</p>
             </div>
           </div>
@@ -98,10 +98,10 @@ function why() {
     desc: 'Four reasons to choose FTR: quality planned from day one, Irish and European standards, a workforce built in, and one partner end to end.',
     schema: [crumbSchema([['Home', ''], ['Why FTR', 'why-ftr/']])],
     body: (P) => `
-${hero({ P, label: 'Why FTR', title: 'Four reasons to choose FTR.', lede: 'Quality and delivery, planned from day one.', photo: 'distribution-board', short: true })}
+${hero({ P, label: 'Why FTR', title: 'Four reasons to choose FTR.', lede: 'Quality and delivery, planned from day one.', photo: 'cobot-gripper', short: true })}
 
 ${sec({ id: 'four', num: '01', label: 'Four differentiators', body: `${head('What sets FTR apart.')}
-${whyTiles(P)}` })}
+${whyRows(P, ['process-valves', 'lab-interior', 'site-team', 'steel-tank'])}` })}
 
   <!-- SIX AREAS BLOCK (not published): "Where general M&E practice does not transfer" —
        six characteristics of the mission-critical facility class. Text to follow from FTR;
@@ -118,14 +118,14 @@ ${ctaSection(P, {}, '', ' on-navy')}
 // ---------------------------------------------------------------- Careers
 function careers() {
   const TRADES = ['Process and utility piping', 'Electrical', 'HVAC', 'Cleanroom fit-out', 'Commissioning'];
-  const train = form('', {
-    id: 'form-train', subject: 'Careers: Train with FTR', submit: 'Register interest',
+  const jobs = form('', {
+    id: 'form-jobs', subject: 'Careers: Apply for jobs at FTR Build', submit: 'Send application', multipart: true,
     fields: [
-      row(fld('train', 'name', 'Name', { auto: 'name' }), fld('train', 'phone', 'Phone', { type: 'tel', auto: 'tel' })),
-      row(fld('train', 'email', 'Email', { type: 'email', auto: 'email' }), fld('train', 'state', 'State', { auto: 'address-level1' })),
-      row(fld('train', 'qualification', 'Qualification', { opts: ['ITI pass-out', 'Diploma holder', 'B.E./B.Tech graduate', 'Experienced site worker', 'Other'] }),
-        fld('train', 'trade', 'Trade of interest', { opts: TRADES })),
-      fld('train', 'experience', 'Years of site experience', { type: 'number', extra: 'min="0" max="60" inputmode="numeric"' }),
+      row(fld('jobs', 'name', 'Name', { auto: 'name' }), fld('jobs', 'email', 'Email', { type: 'email', auto: 'email' })),
+      row(fld('jobs', 'phone', 'Phone', { type: 'tel', auto: 'tel' }), fld('jobs', 'position', 'Role or trade you are applying for', { name: 'position' })),
+      row(fld('jobs', 'years', 'Years of experience', { type: 'number', extra: 'min="0" max="60" inputmode="numeric"' }),
+        fld('jobs', 'linkedin', 'LinkedIn', { type: 'url', req: false })),
+      fld('jobs', 'cv', 'CV upload', { type: 'file', name: 'attachment', extra: 'accept=".pdf,.doc,.docx"', help: 'PDF or Word.' }),
     ].join('\n'),
   });
   const trainer = form('', {
@@ -138,13 +138,15 @@ function careers() {
       fld('trainer', 'cv', 'CV upload', { type: 'file', name: 'attachment', extra: 'accept=".pdf,.doc,.docx"', help: 'PDF or Word.' }),
     ].join('\n'),
   });
-  const partner = form('', {
-    id: 'form-partner', subject: 'Careers: Partner with us', submit: 'Send enquiry',
+  const skills = form('', {
+    id: 'form-skills', subject: 'Careers: Skill development enquiry', submit: 'Send enquiry',
     fields: [
-      row(fld('partner', 'organisation', 'Organisation', { auto: 'organization' }), fld('partner', 'contact', 'Contact name', { auto: 'name' })),
-      row(fld('partner', 'role', 'Role', { auto: 'organization-title' }), fld('partner', 'email', 'Email', { type: 'email', auto: 'email' })),
-      row(fld('partner', 'phone', 'Phone', { type: 'tel', auto: 'tel' }),
-        fld('partner', 'type', 'Partnership type', { name: 'partnership_type', opts: ['Government skilling body', 'University or institution', 'Contractor workforce upskilling', 'Other'] })),
+      row(fld('skills', 'name', 'Name', { auto: 'name' }), fld('skills', 'email', 'Email', { type: 'email', auto: 'email' })),
+      row(fld('skills', 'phone', 'Phone', { type: 'tel', auto: 'tel' }), fld('skills', 'organisation', 'Organisation', { auto: 'organization', req: false })),
+      row(fld('skills', 'as', 'I am enquiring as', { name: 'enquiring_as', opts: ['Trainee', 'Government skilling body', 'University or institution', 'Contractor (workforce upskilling)', 'Other'] }),
+        fld('skills', 'trade', 'Trade of interest', { opts: TRADES, req: false })),
+      row(fld('skills', 'state', 'State', { auto: 'address-level1', req: false }), fld('skills', 'qualification', 'Qualification', { name: 'qualification', req: false })),
+      fld('skills', 'message', 'Message', { name: 'message', area: true, req: false }),
     ].join('\n'),
   });
   // `form()` was called without P so the privacy link needs the page depth: fix it up.
@@ -152,26 +154,26 @@ function careers() {
 
   page({
     slug: 'careers',
-    title: 'Careers &amp; Trainee Enrolment &mdash; FTR',
-    desc: 'Train with FTR, become a trainer, or partner with us. Enrol in M&amp;E and cleanroom certification, or apply as a master trainer or institutional partner.',
+    title: 'Careers &amp; Skill Development Enquiries &mdash; FTR',
+    desc: 'Apply for jobs at FTR Build, become a master trainer, or send a skill development enquiry about M&amp;E and cleanroom certification.',
     css: ['contact'],
     schema: [crumbSchema([['Home', ''], ['Careers', 'careers/']])],
     body: (P) => `
-${hero({ P, label: 'Careers', title: 'Train with us, teach with us, or partner with us.', lede: 'One page, three routes. Choose yours below.', short: true, photo: 'panel-technician' })}
+${hero({ P, label: 'Careers', title: 'Join FTR Build, teach with us, or ask about skills.', lede: 'One page, three routes. Choose yours below.', short: true, photo: 'workshop-trainees' })}
 
 ${sec({ id: 'routes', num: '01', label: 'Choose your route', body: `      <div class="tabs">
         <div class="tabs__list" role="tablist" aria-label="Careers routes">
-          <button class="tabs__tab" role="tab" type="button" id="tab-train" aria-controls="train">Train with FTR</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-jobs" aria-controls="jobs">Apply for jobs at FTR Build</button>
           <button class="tabs__tab" role="tab" type="button" id="tab-trainer" aria-controls="trainer">Become a trainer</button>
-          <button class="tabs__tab" role="tab" type="button" id="tab-partner" aria-controls="partner">Partner with us</button>
+          <button class="tabs__tab" role="tab" type="button" id="tab-skills" aria-controls="skills">Skill development enquiries</button>
         </div>
 
-        <div class="tabs__panel" id="train" role="tabpanel" aria-labelledby="tab-train">
+        <div class="tabs__panel" id="jobs" role="tabpanel" aria-labelledby="tab-jobs">
           <div class="tabs__intro">
-            <h2 class="h2">Train with FTR</h2>
-            <p>For ITI pass-outs, diploma holders, B.E./B.Tech graduates and experienced site workers. Trades: process and utility piping, electrical, HVAC, cleanroom fit-out and commissioning, across three certification tiers. Every entrant completes the mandatory Cleanroom Construction Fundamentals and EHS Safe-Site Pass foundation.</p>
+            <h2 class="h2">Apply for jobs at FTR Build</h2>
+            <p>Tell us your role or trade and your experience, and attach your CV.</p>
           </div>
-${fix(train.replace('href=""', 'href=""'))}
+${fix(jobs)}
         </div>
 
         <div class="tabs__panel" id="trainer" role="tabpanel" aria-labelledby="tab-trainer">
@@ -182,12 +184,12 @@ ${fix(train.replace('href=""', 'href=""'))}
 ${fix(trainer)}
         </div>
 
-        <div class="tabs__panel" id="partner" role="tabpanel" aria-labelledby="tab-partner">
+        <div class="tabs__panel" id="skills" role="tabpanel" aria-labelledby="tab-skills">
           <div class="tabs__intro">
-            <h2 class="h2">Partner with us</h2>
-            <p>For government skilling bodies, universities and contractors. A hub-and-spoke model with government-owned institutions, and workforce upskilling for contractors.</p>
+            <h2 class="h2">Skill development enquiries</h2>
+            <p>For trainees (ITI pass-outs, diploma holders, B.E./B.Tech graduates and experienced site workers), government skilling bodies, universities and contractors. Trades: process and utility piping, electrical, HVAC, cleanroom fit-out and commissioning, across three certification tiers, with a mandatory Cleanroom Construction Fundamentals and EHS Safe-Site Pass foundation.</p>
           </div>
-${fix(partner)}
+${fix(skills)}
         </div>
       </div>` })}
 `,
@@ -216,11 +218,11 @@ function contact() {
   page({
     slug: 'contact',
     title: 'Contact FTR &mdash; Discuss Your Project',
-    desc: 'Contact FTR about skills development, critical construction and consultancy, India market entry or careers. Email general@ftright.com or use the form.',
+    desc: 'Contact FTR about skills development, critical construction and consultancy, India market entry or careers. Email info@ftright.com or use the form.',
     css: ['contact'],
     schema: [crumbSchema([['Home', ''], ['Contact', 'contact/']])],
     body: (P) => `
-${hero({ P, label: 'Contact', title: 'Let&rsquo;s build it right first time.', lede: 'Tell us about the facility, the programme and the constraint.', short: true, photo: 'data-hall' })}
+${hero({ P, label: 'Contact', title: 'Let&rsquo;s build it right first time.', lede: 'Tell us about the facility, the programme and the constraint.', short: true })}
 
 ${sec({ id: 'form', num: '01', label: 'Send an enquiry', body: `      <div class="grid contact">
         <div class="contact__form">
@@ -228,7 +230,7 @@ ${f}
         </div>
         <aside class="contact__aside" aria-label="Contact details">
           <h2 class="aside__title h4">Email</h2>
-          <p class="person-card__mail"><a class="aside__mail" href="mailto:general@ftright.com">general@ftright.com</a></p>
+          <p class="person-card__mail"><a class="aside__mail" href="mailto:info@ftright.com">info@ftright.com</a></p>
           <h2 class="aside__title aside__title--spaced h4">Locations</h2>
           <p class="person-card__mail">India</p>
         </aside>
@@ -255,12 +257,12 @@ ${sections.map(([h, ...ps]) => `        <h2>${h}</h2>\n${ps.map((p) => (p.starts
 });
 
 function privacy() {
-  const E = '<a href="mailto:general@ftright.com">general@ftright.com</a>';
+  const E = '<a href="mailto:info@ftright.com">info@ftright.com</a>';
   legal('privacy', 'Privacy Policy &mdash; FTR', 'How FTR collects, uses and protects personal data, under India&rsquo;s Digital Personal Data Protection Act 2023, the IT Act 2000 and, for EU visitors, the GDPR.',
     'Privacy Policy', 'Last updated: October 2026.', [
       ['Who we are', 'This website is operated by Ftright Tech-Infra &amp; Solutions Private Limited (&ldquo;FTR&rdquo;, &ldquo;First Time Right&rdquo;), CIN U42909GJ2026PTC181309. For privacy questions, write to ' + E + '.'],
       ['What we collect', 'Only what you give us through our forms: your name, contact details, organisation, role, country, the content of your message and, for careers enquiries, details such as qualification, trade, experience and a CV you choose to upload.'],
-      ['Why we use it', 'To reply to your enquiry, to assess trainee, trainer and partner applications, and to run our business. We do not sell personal data and we do not add you to a mailing list because you wrote to us.'],
+      ['Why we use it', 'To reply to your enquiry, to assess job, trainer and skill development applications and enquiries, and to run our business. We do not sell personal data and we do not add you to a mailing list because you wrote to us.'],
       ['Who processes it', 'Form submissions are delivered to FTR by a third-party form service, Web3Forms, and read by FTR staff. Our email runs on Google Workspace. These providers act on our instructions.'],
       ['Cookies and analytics', 'Analytics cookies are set only after you consent through the cookie banner. If you decline, none are set. Strictly necessary storage, such as remembering your choice, does not need consent.'],
       ['Your rights in India', 'Under the Digital Personal Data Protection Act 2023 you may ask to access, correct or erase your personal data, withdraw consent, and nominate someone to exercise these rights for you. We handle personal data in line with the Information Technology Act 2000 and its rules.'],
@@ -282,7 +284,7 @@ function terms() {
       ['Links and third parties', 'Links to other websites are provided for convenience. We are not responsible for their content or practices.'],
       ['Limitation of liability', 'To the extent permitted by law, FTR is not liable for loss arising from your use of, or reliance on, this website.'],
       ['Governing law', 'These terms are governed by the laws of India, including the Indian Contract Act 1872.'],
-      ['Contact', 'Questions about these terms: <a href="mailto:general@ftright.com">general@ftright.com</a>.'],
+      ['Contact', 'Questions about these terms: <a href="mailto:info@ftright.com">info@ftright.com</a>.'],
     ]);
 }
 
@@ -291,9 +293,9 @@ function notFound() {
   page({
     slug: '', file: '404.html', root: true, noindex: true,
     title: 'Page not found &mdash; FTR',
-    desc: 'This page does not exist. Return to the FTR home page or contact general@ftright.com.',
+    desc: 'This page does not exist. Return to the FTR home page or contact info@ftright.com.',
     body: (P) => `
-${hero({ P, label: 'Page not found', title: 'That page is not here.', lede: 'The link may be old. Start from the home page, or write to general@ftright.com.', short: true, photo: 'pipe-runs' })}
+${hero({ P, label: 'Page not found', title: 'That page is not here.', lede: 'The link may be old. Start from the home page, or write to info@ftright.com.', short: true })}
 
 ${sec({ id: 'back', num: '01', label: 'Where to next', body: `${head('Pick up from here.')}
       <p class="stat__src"><a class="link" href="/">Home ${arrowImg(P)}</a> &nbsp; <a class="link" href="/services/">Services ${arrowImg(P)}</a> &nbsp; <a class="link" href="/contact/">Contact ${arrowImg(P)}</a></p>` })}

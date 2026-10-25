@@ -3,22 +3,31 @@
 const { page } = require('./layout');
 const { hero, band, ctaSection } = require('./ui');
 const { arrowImg } = require('./lib');
-const { sec, head, more, cards3, kv, stats, team, crumbSchema, icons, sectorPanels, tiers, bars, flow, route, meter, ptiles } = require('./parts');
+const { sec, head, more, cards3, kv, stats, team, crumbSchema, icons, sectorPanels, tiers, bars, flow, route, meter, ptiles, photo } = require('./parts');
 const { alt } = require('./lib');
 
 const SERVICES = [
   { href: 'services/skills-development/', img: 'welding-training', icon: 'skills', title: 'Skills Development', text: 'India&rsquo;s first structured M&amp;E construction and commissioning certification programme, taught by Irish and European master trainers.', audience: 'Government skilling bodies, contractors, trainees' },
-  { href: 'services/critical-construction/', img: 'switchgear-hall', icon: 'construction', title: 'Critical Construction &amp; Consultancy', text: 'Mission-critical M&amp;E delivery, right first time &mdash; as specialist consultants or as the delivery contractor.', audience: 'Fab, data centre and cleanroom owners; Tier 1/2 MEP contractors' },
-  { href: 'services/india-market-entry/', img: 'process-valves', icon: 'entry', title: 'India Market Entry', text: 'Your base in India &mdash; from inception to completion and beyond. You keep every decision.', audience: 'European companies setting up in India' },
+  { href: 'services/critical-construction/', img: 'plan-discussion', icon: 'construction', title: 'Critical Construction &amp; Consultancy', text: 'Mission-critical M&amp;E delivery, right first time &mdash; as specialist consultants or as the delivery contractor.', audience: 'Fab, data centre and cleanroom owners; Tier 1/2 MEP contractors' },
+  { href: 'services/india-market-entry/', img: 'ahmedabad-dusk', icon: 'entry', title: 'India Market Entry', text: 'Your base in India &mdash; from inception to completion and beyond. You keep every decision.', audience: 'European companies setting up in India' },
 ];
 
+// The Services page shows the same three cards with their own photographs.
+const SERVICES_PAGE_IMG = ['shaft-inspection', 'factory-floor', 'ahmedabad-towers'];
+const SERVICES_PAGE = () => SERVICES.map((c, i) => ({ ...c, img: SERVICES_PAGE_IMG[i] }));
+
+// Ten industries, names only (client, 23 Oct 2026). No descriptions are published for them.
 const SECTORS = [
-  ['semiconductor', 'semiconductor', 'Semiconductor fabs', 'Cleanroom and process M&amp;E construction, commissioning, trade skills, European supplier entry'],
-  ['atmp-osat', 'atmp', 'ATMP / OSAT units', 'M&amp;E packages, commissioning, workforce certification'],
-  ['data-centres', 'datacentre', 'Hyperscale data centres', 'Electrical, cooling/HVAC, commissioning, AI-infrastructure trades training'],
-  ['pharma', 'pharma', 'Pharma cleanrooms', 'Cleanroom fit-out, HVAC, validation-ready commissioning'],
-  ['ev-battery', 'battery', 'EV / battery gigafactories', 'Critical M&amp;E packages, planning and quality consultancy'],
-  ['green-hydrogen', 'hydrogen', 'Green hydrogen', 'Critical M&amp;E planning and commissioning support'],
+  ['semiconductor', 'semiconductor', 'Semiconductor fabs', ''],
+  ['atmp-osat', 'atmp', 'ATMP / OSAT', ''],
+  ['data-centres', 'datacentre', 'Hyperscale &amp; AI data centres', ''],
+  ['pharma', 'pharma', 'Pharma &amp; biotech', ''],
+  ['medical', 'medical', 'Medical devices &amp; hospitals', ''],
+  ['ev-battery', 'battery', 'EV &amp; battery gigafactories', ''],
+  ['renewables', 'hydrogen', 'Renewables &amp; green hydrogen', ''],
+  ['transmission', 'transmission', 'Transmission &amp; substations', ''],
+  ['defence-aerospace', 'defence', 'Defence &amp; aerospace', ''],
+  ['electronics', 'electronics', 'Electronics &amp; display', ''],
 ];
 
 const WHY = [
@@ -29,8 +38,14 @@ const WHY = [
 ];
 
 const WHY_ICONS = ['check', 'globe', 'people', 'link'];
-const WHY_IMG = ['distribution-board', 'gmp-isolator', 'welding-training', 'process-valves'];
-const whyTiles = (P = '') => ptiles(P, WHY.map(([t, x], i) => [WHY_IMG[i], WHY_ICONS[i], t, x]));
+const WHY_IMG = ['panel-test', 'factory-engineer', 'team-machine', 'plant-aerial'];
+const whyRows = (P = '', imgs = WHY_IMG) => `      <ol class="zig">
+${WHY.map(([t, x], i) => `        <li class="zig__row reveal">
+          <div class="zig__media">${photo(P, imgs[i], { sizes: '(max-width: 900px) 100vw, 50vw' })}</div>
+          <div class="zig__copy"><span class="zig__num">0${i + 1}</span>${icons[WHY_ICONS[i]]}<h3 class="zig__title">${t}</h3><p class="zig__text">${x}</p></div>
+        </li>`).join('\n')}
+      </ol>`;
+const whyTiles = (P = '', imgs = WHY_IMG) => ptiles(P, WHY.map(([t, x], i) => [imgs[i], WHY_ICONS[i], t, x]));
 
 const sectorIcons = (P) => `      <ul class="icons6">
 ${SECTORS.map(([id, ic, name]) => `        <li class="icons6__item reveal"><a href="${P}sectors/#${id}">${icons[ic]}<span>${name}</span></a></li>`).join('\n')}
@@ -48,7 +63,10 @@ ${PATTERN.map((n, i) => (i < 4
           </ol>
         </div>`;
 
-const patternSection = (P) => `  <section class="section on-paper gate pattern" id="pattern" aria-labelledby="pattern-h">
+const patternSection = (P) => `  <section class="section on-navy gate pattern" id="pattern" aria-labelledby="pattern-h">
+    <div class="pattern__bg">
+      <img src="${P}assets/img/hero-cranes-1024.webp" srcset="${P}assets/img/hero-cranes-640.webp 640w, ${P}assets/img/hero-cranes-1024.webp 1024w, ${P}assets/img/hero-cranes-1600.webp 1600w" sizes="100vw" alt="" width="1024" height="682" loading="lazy" decoding="async">
+    </div>
     <div class="shell">
       <div class="gate__head">
         <span class="gate__num">03</span>
@@ -88,7 +106,7 @@ function home() {
     </div>
     <div class="shell hero__inner">
       <span class="label hero__label reveal">FTR &middot; First Time Right</span>
-      <h1 class="display hero__title wipe" id="h1">Mission-critical facilities. Built First Time Right.</h1>
+      <h1 class="display hero__title" id="h1">Mission-critical facilities. Built First Time Right.</h1>
       <p class="hero__desc reveal">Construction, commissioning, skills and India market entry for semiconductor fabs, data centres and cleanrooms.</p>
       <div class="hero__actions reveal">
         <a class="btn btn--primary" href="${P}contact/">Discuss your project</a>
@@ -97,8 +115,7 @@ function home() {
     </div>
   </section>
 
-${sec({ id: 'intro', tone: 'on-paper', label: 'Why now', body: `      <p class="statement" id="__H__">India is building its semiconductor and data centre future. FTR brings Irish and European mission-critical execution standards to build it <strong>right first time</strong>.</p>
-      <div class="gauge" aria-hidden="true"><span class="gauge__mark"></span></div>` })}
+${sec({ id: 'intro', tone: 'on-paper', label: 'Why now', body: `      <p class="statement" id="__H__">India is building its semiconductor and data centre future. FTR brings Irish and European mission-critical execution standards to build it <strong>right first time</strong>.</p>` })}
 
 ${sec({ id: 'services', num: '01', label: 'Services', status: 'Three ways we work', body: `${head('Three services. One standard.')}
 ${cards3(P, SERVICES)}` })}
@@ -132,24 +149,38 @@ function about() {
     title: 'About FTR &mdash; Mission-Critical Construction in India',
     desc: 'FTR is an India-based mission-critical M&amp;E construction, consultancy and skills company, led by people with 30+ years of European delivery experience.',
     schema: [crumbSchema([['Home', ''], ['About', 'about/']]),
-      { '@type': 'Person', name: 'Paul Colleary', jobTitle: 'Executive Director, Operations & Co-Founder', worksFor: { '@id': 'https://ftright.com/#organization' } },
-      { '@type': 'Person', name: 'Trushti Raval', jobTitle: 'CEO & Director', worksFor: { '@id': 'https://ftright.com/#organization' } }],
+      { '@type': 'Person', name: 'Paul Colleary', jobTitle: 'Executive Director, Operations', worksFor: { '@id': 'https://ftright.com/#organization' } },
+      { '@type': 'Person', name: 'Trushti Raval', jobTitle: 'Executive Director & CEO', worksFor: { '@id': 'https://ftright.com/#organization' } },
+      { '@type': 'Person', name: 'Vishnubhai (ND) Chaudhari', jobTitle: 'Executive Director of Corporate Affairs', worksFor: { '@id': 'https://ftright.com/#organization' } }],
     body: (P) => `
-${hero({ P, label: 'About FTR', title: 'Irish and European mission-critical know-how, built into India&rsquo;s next generation of facilities.', lede: 'FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company.', photo: 'fire-main' })}
+${hero({ P, label: 'About FTR', title: 'Irish and European mission-critical know-how, skilled and built into India&rsquo;s next generation of facilities.', lede: 'FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company.', photo: 'fire-main' })}
 
-${sec({ id: 'who', num: '01', label: 'Who we are', body: `      <div class="grid">
-        <div class="split__head"><h2 class="h2 wipe" id="__H__">What FTR does.</h2></div>
-        <div class="split__body">
-          <p class="lead">FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company. We work on semiconductor fabs, ATMP/OSAT units, hyperscale data centres and cleanroom facilities, and help European companies establish their base in India.</p>
-          <p class="lead split__lede"><strong>Our mission.</strong> Build India&rsquo;s mission-critical facilities right first time &mdash; and leave the skills behind so the capability stays in India.</p>
+${sec({ id: 'who', num: '01', label: 'Who we are', body: `      <div class="who">
+        <div class="who__copy">
+          <h2 class="h2 wipe" id="__H__">What FTR does.</h2>
+          <p class="lead reveal">FTR (First Time Right) is an <span class="hl">India-based</span> mission-critical <span class="hl">M&amp;E construction, consultancy and skills</span> company. We work on semiconductor fabs, ATMP/OSAT units, hyperscale data centres and cleanroom facilities, and help <span class="hl">European companies</span> establish their base in India.</p>
+          <ul class="chips reveal" aria-label="Facility classes">
+            <li class="chip">${icons.semiconductor}Semiconductor fabs</li>
+            <li class="chip">${icons.atmp}ATMP/OSAT units</li>
+            <li class="chip">${icons.datacentre}Hyperscale data centres</li>
+            <li class="chip">${icons.cleanroom}Cleanroom facilities</li>
+          </ul>
         </div>
+        <div class="who__media">
+          <figure class="who__photo reveal">${photo(P, 'crew-vests', { sizes: '(max-width: 900px) 50vw, 22vw' })}</figure>
+          <figure class="who__photo who__photo--low reveal">${photo(P, 'crew-orange', { sizes: '(max-width: 900px) 50vw, 22vw' })}</figure>
+        </div>
+        <aside class="who__mission on-navy reveal" aria-label="Our mission">
+          <span class="label">Our mission</span>
+          <p class="who__quote">Build India&rsquo;s mission-critical facilities <span class="hl">right first time</span> &mdash; and leave the <span class="hl">skills</span> behind so the capability stays in India.</p>
+        </aside>
       </div>` })}
 
 ${sec({ id: 'approach', tone: 'on-paper', num: '02', label: 'Our approach', body: `${head('Three commitments in how we work.')}
 ${ptiles(P, [
-    ['gmp-isolator', 'globe', 'Irish and European execution standards, applied to the Indian programme'],
-    ['distribution-board', 'check', 'Commissioning and quality planned from day one, not bolted on at the end'],
-    ['welding-training', 'people', 'Train-the-trainer model: every project and programme builds Indian capability'],
+    ['laptop-review', 'globe', 'Irish and European execution standards, applied to the Indian programme'],
+    ['qc-microscope', 'check', 'Commissioning and quality planned from day one, not bolted on at the end'],
+    ['drawing-review', 'people', 'Train-the-trainer model: every project and programme builds Indian capability'],
   ])}
       <p class="stat__src">Our observations relate to the mission-critical facility class, not to Indian construction generally.</p>` })}
 
@@ -172,7 +203,7 @@ function services() {
 ${hero({ P, label: 'Services', title: 'Build it, commission it, staff it.', lede: 'FTR (First Time Right) builds, commissions and staffs mission-critical facilities in India &mdash; semiconductor fabs, ATMP/OSAT units, hyperscale data centres and cleanrooms &mdash; and helps European companies establish their base here.', photo: 'pipe-runs' })}
 
 ${sec({ id: 'three', num: '01', label: 'Three services', body: `${head('Choose the one that fits.')}
-${cards3(P, SERVICES)}` })}
+${cards3(P, SERVICES_PAGE())}` })}
 
 ${sec({ id: 'together', tone: 'on-navy', num: '02', label: 'How they fit together', body: `${head('One partner, end to end.', 'From market entry and permissions to construction, commissioning and a trained workforce.')}
 ${flow(P, [
@@ -195,20 +226,20 @@ function skills() {
     schema: [crumbSchema([['Home', ''], ['Services', 'services/'], ['Skills Development', 'services/skills-development/']]),
       { '@type': 'Service', name: 'MEP & Cleanroom Skills Development', provider: { '@id': 'https://ftright.com/#organization' }, areaServed: 'India' }],
     body: (P) => `
-${hero({ P, label: 'MEP &amp; Cleanroom Skills Development', title: 'India&rsquo;s first structured M&amp;E construction and commissioning certification programme.', lede: 'India is building chip designers and fab operators. FTR trains the specialist M&amp;E trades who physically build those facilities &mdash; piping, electrical, HVAC, cleanroom fit-out and commissioning &mdash; to the standard semiconductor and data centre projects demand.', photo: 'welding-training',
+${hero({ P, label: 'MEP &amp; Cleanroom Skills Development', title: 'India&rsquo;s first structured M&amp;E construction and commissioning certification programme.', lede: 'India is building chip designers and fab operators. FTR trains the specialist M&amp;E trades who physically build those facilities &mdash; piping, electrical, HVAC, cleanroom fit-out and commissioning &mdash; to the standard semiconductor and data centre projects demand.', photo: 'electrician-panel',
   crumbs: [['Services', 'services/'], ['Skills Development', null]],
-  actions: `<a class="btn btn--primary" href="${P}careers/#partner">Partner with FTR</a><a class="btn btn--ghost" href="${P}careers/#partner">Upskill your workforce</a><a class="btn btn--ghost" href="${P}careers/#train">Register interest</a>` })}
+  actions: `<a class="btn btn--primary" href="${P}careers/#skills">Partner with FTR</a><a class="btn btn--ghost" href="${P}careers/#skills">Upskill your workforce</a><a class="btn btn--ghost" href="${P}careers/#skills">Register interest</a>` })}
 
 ${sec({ id: 'programme', num: '01', label: 'The programme', body: `${head('How the certification works')}
       <dl class="facts">
-        <div class="fact reveal"><dt class="fact__label">Programmes</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span></dd><p class="fact__note">Across the trades</p></div>
-        <div class="fact reveal"><dt class="fact__label">Certification tiers</dt><dd class="fact__value"><span class="count" data-to="3" data-pad="2">03</span></dd><p class="fact__note">Foundation, Trade Specialist, Deployment-Ready Diploma</p></div>
-        <div class="fact reveal"><dt class="fact__label">Foundation for all</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span><span class="fact__unit">weeks</span></dd><p class="fact__note">Cleanroom Construction Fundamentals (6) + EHS Safe-Site Pass (3)</p></div>
-        <div class="fact reveal"><dt class="fact__label">Core trade pathway</dt><dd class="fact__value">~16<span class="fact__unit">weeks</span></dd><p class="fact__note">Commissioning ~8 weeks. 360&ndash;1,120 hours per pathway</p></div>
+        <div class="fact reveal"><dt class="fact__label">Programmes</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span></dd><dd class="fact__note">Across the trades</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Certification tiers</dt><dd class="fact__value"><span class="count" data-to="3" data-pad="2">03</span></dd><dd class="fact__note">Foundation, Trade Specialist, Deployment-Ready Diploma</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Foundation for all</dt><dd class="fact__value"><span class="count" data-to="9" data-pad="2">09</span><span class="fact__unit">weeks</span></dd><dd class="fact__note">Cleanroom Construction Fundamentals (6) + EHS Safe-Site Pass (3)</dd></div>
+        <div class="fact reveal"><dt class="fact__label">Core trade pathway</dt><dd class="fact__value">~16<span class="fact__unit">weeks</span></dd><dd class="fact__note">Commissioning ~8 weeks. 360&ndash;1,120 hours per pathway</dd></div>
       </dl>` })}
 
 ${sec({ id: 'trades', tone: 'on-paper', num: '02', label: 'Trades covered', body: `${head('Five trades, one standard.')}
-${ptiles(P, [['process-valves', 'piping', 'Process and utility piping'], ['distribution-board', 'electrical', 'Electrical'], ['cable-containment', 'hvac', 'HVAC'], ['gmp-isolator', 'cleanroom', 'Cleanroom fit-out'], ['panel-technician', 'commissioning', 'Commissioning']])}` })}
+${ptiles(P, [['pipe-welder', 'piping', 'Process and utility piping'], ['breaker-wiring', 'electrical', 'Electrical'], ['roof-ventilation', 'hvac', 'HVAC'], ['cleanroom-corridor', 'cleanroom', 'Cleanroom fit-out'], ['control-room', 'commissioning', 'Commissioning']])}` })}
 
 ${sec({ id: 'tiers', num: '03', label: 'Certification tiers', body: `${head('Three certification tiers.')}
 ${tiers(['Foundation', 'Trade Specialist', 'Deployment-Ready Diploma'])}` })}
@@ -221,12 +252,12 @@ ${kv([
     ['AI Infrastructure layer', 'Across programmes, plus DCE-AI (AI Infrastructure Engineering) at Tier 3.'],
     ['Taught by', 'Resident Irish and European master trainers with live semiconductor project heritage (Ireland&rsquo;s Intel Leixlip / Fab 34 track record).'],
     ['Who can enrol', 'ITI pass-outs, diploma holders, B.E./B.Tech graduates, experienced site workers.'],
-    ['Sectors served', 'Semiconductor fabs, ATMP/OSAT, hyperscale data centres, pharma cleanrooms, EV/battery gigafactories, green hydrogen.'],
+    ['Sectors served', 'Semiconductor fabs, ATMP/OSAT, hyperscale and AI data centres, pharma and biotech, medical devices and hospitals, EV and battery gigafactories, renewables and green hydrogen, transmission and substations, defence and aerospace, electronics and display.'],
   ])}` })}
 
-${band(P, { id: 'trainer-h', img: 'panel-technician', dim: true, label: 'Train-the-trainer', title: 'Capability that stays in India.', text: 'Master trainers certify Indian instructors so capability stays in India.', href: P + 'careers/#trainer', linkText: 'Become a trainer' })}
+${band(P, { id: 'trainer-h', img: 'robotics-lab', dim: true, label: 'Train-the-trainer', title: 'Capability that stays in India.', text: 'Master trainers certify Indian instructors so capability stays in India.', href: P + 'careers/#trainer', linkText: 'Become a trainer' })}
 
-${ctaSection(P, { title: 'Train with FTR, or partner with us.', text: 'Government and institutions, contractors, and trainees each have their own route.', primary: 'Register interest', href: 'careers/#train', secondary: 'Partner with FTR', secondaryHref: P + 'careers/#partner' }, '', ' on-navy')}
+${ctaSection(P, { title: 'Questions about skills development?', text: 'Government and institutions, contractors, and trainees each have their own route.', primary: 'Register interest', href: 'careers/#skills', secondary: 'Partner with FTR', secondaryHref: P + 'careers/#skills' }, '', ' on-navy')}
 `,
   });
 }
@@ -246,17 +277,22 @@ ${hero({ P, label: 'Critical Construction &amp; Consultancy', title: 'Mission-cr
 
 ${sec({ id: 'models', num: '01', label: 'Engagement models', body: `${head('Three ways to engage FTR.')}
       <ul class="cards3">
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">01</span>${meter(1, 'Advice')}<h3 class="card3__title">Specialist consultancy</h3><p class="card3__text">Planning, quality assurance/control and commissioning consultancy on client or contractor teams.</p></div></li>
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">02</span>${meter(2, 'Packages')}<h3 class="card3__title">Package delivery</h3><p class="card3__text">Defined M&amp;E packages &mdash; e.g. process piping, cleanroom fit-out, HVAC, electrical, commissioning.</p></div></li>
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">03</span>${meter(3, 'Everything')}<h3 class="card3__title">Full EPC</h3><p class="card3__text">Complete critical-construction delivery for semiconductor and data centre projects.</p></div></li>
+${[
+    ['site-engineer', 1, 'Advice', 'Specialist consultancy', 'Planning, quality assurance/control and commissioning consultancy on client or contractor teams.'],
+    ['pipe-fitting', 2, 'Packages', 'Package delivery', 'Defined M&amp;E packages &mdash; e.g. process piping, cleanroom fit-out, HVAC, electrical, commissioning.'],
+    ['plant-exterior', 3, 'Full scope', 'Full EPC', 'Complete critical-construction delivery for semiconductor and data centre projects.'],
+  ].map(([img, n, cap, t, x]) => `        <li class="card3 card3--static card3--photo reveal"><div class="card3__box"><div class="card3__photo">${photo(P, img)}</div><div class="card3__body"><span class="card3__num">0${n}</span>${meter(n, cap)}<h3 class="card3__title">${t}</h3><p class="card3__text">${x}</p></div></div></li>`).join('\n')}
       </ul>` })}
 
-${band(P, { id: 'class-h', img: 'data-hall', dim: true, label: 'A different facility class', title: 'General M&amp;E practice does not transfer.', text: 'Quality and commissioning are planned from day one, not bolted on at the end.', href: P + 'why-ftr/', linkText: 'Why FTR' })}
+${band(P, { id: 'class-h', img: 'transformers', dim: true, label: 'A different facility class', title: 'General M&amp;E practice does not transfer.', text: 'Quality and commissioning are planned from day one, not bolted on at the end.', href: P + 'why-ftr/', linkText: 'Why FTR' })}
 
 ${sec({ id: 'people', tone: 'on-paper', num: '02', label: 'Who delivers', body: `${head('Leadership and workforce track record.', 'Paul Colleary brings 30+ years of mission-critical M&amp;E delivery across Europe (Suir Engineering, Jones Engineering, AM Technical Solutions). The team is Irish, European and Indian, with projects delivered across Europe.')}
-${team(P, false, ['vishnubhai'])}` })}
+${team(P, false)}` })}
 
-${sec({ id: 'points', tone: 'on-navy', num: '03', label: 'What you get', body: `      <p class="statement" id="__H__">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>` })}
+${sec({ id: 'points', tone: 'on-navy', num: '03', label: 'What you get', body: `      <div class="pointsplit">
+        <p class="statement" id="__H__">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>
+        <div class="pointsplit__photo reveal">${photo(P, 'substation', { sizes: '(max-width: 900px) 100vw, 40vw' })}</div>
+      </div>` })}
 
 ${ctaSection(P, { primary: 'Discuss your project', type: 'critical-construction' }, '', '')}
 `,
@@ -280,7 +316,7 @@ function entry() {
     schema: [crumbSchema([['Home', ''], ['Services', 'services/'], ['India Market Entry', 'services/india-market-entry/']]),
       { '@type': 'Service', name: 'India Market Entry for Foreign Companies', provider: { '@id': 'https://ftright.com/#organization' }, areaServed: 'India' }],
     body: (P) => `
-${hero({ P, label: 'India Market Entry for Foreign Companies', title: 'Your base in India &mdash; from inception to completion and beyond.', lede: 'FTR helps European companies in semiconductors, data centres and advanced manufacturing establish operations in India. We handle site, permissions, licences, utilities and construction readiness, while you keep every decision.', photo: 'process-valves',
+${hero({ P, label: 'India Market Entry for Foreign Companies', title: 'Your base in India &mdash; from inception to completion and beyond.', lede: 'FTR helps European companies in semiconductors, data centres and advanced manufacturing establish operations in India. We handle site, permissions, licences, utilities and construction readiness, while you keep every decision.', photo: 'ahmedabad-bridge',
   crumbs: [['Services', 'services/'], ['India Market Entry', null]],
   actions: `<a class="btn btn--primary" href="${P}contact/?type=india-market-entry">Book an India entry call</a>` })}
 
@@ -296,7 +332,7 @@ ${kv([
     ['Lead contacts', 'Paul Colleary and Trushti Raval.'],
   ])}` })}
 
-${band(P, { id: 'pilot-h', img: 'distribution-board', dim: true, label: 'Pilot offer', title: '180-day target to construction readiness.', text: 'You keep every decision while FTR drives the work.', href: P + 'contact/?type=india-market-entry', linkText: 'Book an India entry call' })}
+${band(P, { id: 'pilot-h', img: 'steel-structure', dim: true, label: 'Pilot offer', title: '180-day target to construction readiness.', text: 'You keep every decision while FTR drives the work.', href: P + 'contact/?type=india-market-entry', linkText: 'Book an India entry call' })}
 
 ${sec({ id: 'context', num: '03', label: 'Market context', body: `${head('Why now.')}
 ${stats([
@@ -310,4 +346,4 @@ ${ctaSection(P, { title: 'Book an India entry call.', text: 'Tell us about your 
   });
 }
 
-module.exports = { home, about, services, skills, construction, entry, SECTORS, WHY, whyTiles, band };
+module.exports = { home, about, services, skills, construction, entry, SECTORS, WHY, whyTiles, whyRows, band };

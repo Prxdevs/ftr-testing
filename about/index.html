@@ -18,13 +18,10 @@
 <link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/favicon-180.png">
 
+<link rel="preload" href="../assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="../assets/css/fonts.css">
-<link rel="stylesheet" href="../assets/css/tokens.css">
-<link rel="stylesheet" href="../assets/css/base.css">
-<link rel="stylesheet" href="../assets/css/brief.css">
-
+<link rel="stylesheet" href="../assets/css/site.css">
 
 <script type="application/ld+json">
 {
@@ -46,7 +43,7 @@
         {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "general@ftright.com"
+          "email": "info@ftright.com"
         }
       ]
     },
@@ -70,7 +67,7 @@
     {
       "@type": "Person",
       "name": "Paul Colleary",
-      "jobTitle": "Executive Director, Operations & Co-Founder",
+      "jobTitle": "Executive Director, Operations",
       "worksFor": {
         "@id": "https://ftright.com/#organization"
       }
@@ -78,7 +75,15 @@
     {
       "@type": "Person",
       "name": "Trushti Raval",
-      "jobTitle": "CEO & Director",
+      "jobTitle": "Executive Director & CEO",
+      "worksFor": {
+        "@id": "https://ftright.com/#organization"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Vishnubhai (ND) Chaudhari",
+      "jobTitle": "Executive Director of Corporate Affairs",
       "worksFor": {
         "@id": "https://ftright.com/#organization"
       }
@@ -91,6 +96,12 @@
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="spine" aria-hidden="true">
+  <span class="spine__rule"></span>
+  <span class="spine__fill"></span>
+  <img class="spine__arrow" src="../assets/img/ftr-arrow-24.png" srcset="../assets/img/ftr-arrow-24.png 1x, ../assets/img/ftr-arrow-48.png 2x" alt="" width="24" height="16">
+</div>
 
 <header class="header is-stuck">
   <div class="shell header__bar">
@@ -200,7 +211,7 @@
     </div>
     <div class="shell phero__inner">
       <span class="label phero__label reveal">About FTR</span>
-      <h1 class="display phero__title wipe" id="h1">Irish and European mission-critical know-how, built into India&rsquo;s next generation of facilities.</h1>
+      <h1 class="display phero__title" id="h1">Irish and European mission-critical know-how, skilled and built into India&rsquo;s next generation of facilities.</h1>
       <p class="phero__lede reveal">FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company.</p>
     </div>
   </section>
@@ -211,12 +222,25 @@
         <span class="gate__num">01</span>
         <span class="label">Who we are</span>
       </div>
-      <div class="grid">
-        <div class="split__head"><h2 class="h2 wipe" id="who-h">What FTR does.</h2></div>
-        <div class="split__body">
-          <p class="lead">FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company. We work on semiconductor fabs, ATMP/OSAT units, hyperscale data centres and cleanroom facilities, and help European companies establish their base in India.</p>
-          <p class="lead split__lede"><strong>Our mission.</strong> Build India&rsquo;s mission-critical facilities right first time &mdash; and leave the skills behind so the capability stays in India.</p>
+      <div class="who">
+        <div class="who__copy">
+          <h2 class="h2 wipe" id="who-h">What FTR does.</h2>
+          <p class="lead reveal">FTR (First Time Right) is an <span class="hl">India-based</span> mission-critical <span class="hl">M&amp;E construction, consultancy and skills</span> company. We work on semiconductor fabs, ATMP/OSAT units, hyperscale data centres and cleanroom facilities, and help <span class="hl">European companies</span> establish their base in India.</p>
+          <ul class="chips reveal" aria-label="Facility classes">
+            <li class="chip"><svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="14" height="14" rx="1.5"/><rect x="13" y="13" width="6" height="6"/><path d="M12 9V4M16 9V4M20 9V4M12 28v-5M16 28v-5M20 28v-5M9 12H4M9 16H4M9 20H4M28 12h-5M28 16h-5M28 20h-5"/></svg>Semiconductor fabs</li>
+            <li class="chip"><svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="6" width="22" height="7" rx="1.5"/><rect x="5" y="14" width="22" height="7" rx="1.5"/><path d="M9 25h14"/><path d="M9.5 9.5h.01M9.5 17.5h.01"/></svg>ATMP/OSAT units</li>
+            <li class="chip"><svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="22" height="7" rx="1.5"/><rect x="5" y="12.5" width="22" height="7" rx="1.5"/><rect x="5" y="21" width="22" height="7" rx="1.5"/><path d="M9 7.5h.01M9 16h.01M9 24.5h.01M14 7.5h9M14 16h9M14 24.5h9"/></svg>Hyperscale data centres</li>
+            <li class="chip"><svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="5" width="24" height="22" rx="1.5"/><path d="M4 12h24M4 19h24M12 5v22M20 5v22"/></svg>Cleanroom facilities</li>
+          </ul>
         </div>
+        <div class="who__media">
+          <figure class="who__photo reveal"><img src="../assets/img/crew-vests-1024.webp" srcset="../assets/img/crew-vests-640.webp 640w, ../assets/img/crew-vests-1024.webp 1024w, ../assets/img/crew-vests-1600.webp 1600w" sizes="(max-width: 900px) 50vw, 22vw" alt="Workers in high-visibility vests and hard hats working together on site" width="1024" height="682" loading="lazy" decoding="async"></figure>
+          <figure class="who__photo who__photo--low reveal"><img src="../assets/img/crew-orange-1024.webp" srcset="../assets/img/crew-orange-640.webp 640w, ../assets/img/crew-orange-1024.webp 1024w, ../assets/img/crew-orange-1600.webp 1600w" sizes="(max-width: 900px) 50vw, 22vw" alt="Crew in orange overalls and yellow hard hats at an industrial plant" width="1024" height="682" loading="lazy" decoding="async"></figure>
+        </div>
+        <aside class="who__mission on-navy reveal" aria-label="Our mission">
+          <span class="label">Our mission</span>
+          <p class="who__quote">Build India&rsquo;s mission-critical facilities <span class="hl">right first time</span> &mdash; and leave the <span class="hl">skills</span> behind so the capability stays in India.</p>
+        </aside>
       </div>
     </div>
   </section>
@@ -234,21 +258,21 @@
       </div>
       <ul class="ptiles ptiles--3">
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../assets/img/gmp-isolator-1024.webp" srcset="../assets/img/gmp-isolator-640.webp 640w, ../assets/img/gmp-isolator-1024.webp 1024w, ../assets/img/gmp-isolator-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Operators in cleanroom gowns at a stainless-steel isolator line" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../assets/img/laptop-review-1024.webp" srcset="../assets/img/laptop-review-640.webp 640w, ../assets/img/laptop-review-1024.webp 1024w, ../assets/img/laptop-review-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Engineers in hard hats reviewing a drawing on a laptop" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c-4 4-4 20 0 24M16 4c4 4 4 20 0 24"/></svg>
             <h3 class="ptile__title">Irish and European execution standards, applied to the Indian programme</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../assets/img/distribution-board-1024.webp" srcset="../assets/img/distribution-board-640.webp 640w, ../assets/img/distribution-board-1024.webp 1024w, ../assets/img/distribution-board-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Circuit breakers in a distribution board" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../assets/img/qc-microscope-1024.webp" srcset="../assets/img/qc-microscope-640.webp 640w, ../assets/img/qc-microscope-1024.webp 1024w, ../assets/img/qc-microscope-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Technician in protective clothing inspecting a sample under a microscope" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="16" cy="16" r="12"/><path d="M10.5 16.5l4 4 7-8"/></svg>
             <h3 class="ptile__title">Commissioning and quality planned from day one, not bolted on at the end</h3>
           </div>
         </li>
         <li class="ptile reveal">
-          <div class="ptile__media"><img src="../assets/img/welding-training-1024.webp" srcset="../assets/img/welding-training-640.webp 640w, ../assets/img/welding-training-1024.webp 1024w, ../assets/img/welding-training-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Two welders in helmets working at a bench" width="1024" height="682" loading="lazy" decoding="async"></div>
+          <div class="ptile__media"><img src="../assets/img/drawing-review-1024.webp" srcset="../assets/img/drawing-review-640.webp 640w, ../assets/img/drawing-review-1024.webp 1024w, ../assets/img/drawing-review-1600.webp 1600w" sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw" alt="Engineer in a high-visibility vest reviewing drawings with a colleague" width="1024" height="682" loading="lazy" decoding="async"></div>
           <div class="ptile__body">
             <svg class="icon" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3.2"/><path d="M3 27c0-5 3.5-8 8-8s8 3 8 8"/><path d="M20 20c4 0 9 2 9 7"/></svg>
             <h3 class="ptile__title">Train-the-trainer model: every project and programme builds Indian capability</h3>
@@ -276,7 +300,7 @@
           <span class="member__photo" data-initials="PC" aria-hidden="true"></span>
           <div>
             <h3 class="member__name">Paul Colleary</h3>
-            <p class="member__role">Executive Director, Operations &amp; Co-Founder</p>
+            <p class="member__role">Executive Director, Operations</p>
             <p class="member__bio">30+ years in mission-critical M&amp;E delivery across Ireland, Germany and wider Europe, rising from the trades to Manager of the Planning department. Experience with Suir Engineering, Jones Engineering and AM Technical Solutions. Has spent the last couple of years on a semiconductor project in India, so knows the industry from both European and Indian sides. Keen eye for quality; special interest in cleanroom fundamentals for semiconductor fabs.</p>
           </div>
         </li>
@@ -284,8 +308,15 @@
           <span class="member__photo" data-initials="TR" aria-hidden="true"></span>
           <div>
             <h3 class="member__name">Trushti Raval</h3>
-            <p class="member__role">CEO &amp; Director</p>
+            <p class="member__role">Executive Director &amp; CEO</p>
             <p class="member__bio">Electrical engineering degree (India); Business Management (Finance) (England). Past five years supporting European, Irish and British critical-infrastructure programmes &mdash; data centres, semiconductors, battery manufacturing &mdash; across all departments and CSA/MEP disciplines.</p>
+          </div>
+        </li>
+        <li class="member reveal">
+          <span class="member__photo" data-initials="VC" aria-hidden="true"></span>
+          <div>
+            <h3 class="member__name">Vishnubhai (ND) Chaudhari</h3>
+            <p class="member__role">Executive Director of Corporate Affairs</p>
           </div>
         </li>
       </ul>
@@ -300,7 +331,7 @@
         <p class="lead cta__text">Tell us about the facility, the programme and the constraint. A member of the FTR team will reply.</p>
         <div class="cta__actions">
           <a class="btn btn--primary" href="../contact/">Discuss your project</a>
-          <a class="btn btn--outline" href="mailto:general@ftright.com">general@ftright.com</a>
+          <a class="btn btn--outline" href="mailto:info@ftright.com">info@ftright.com</a>
         </div>
       </div>
     </div>
@@ -319,7 +350,7 @@
              srcset="../assets/img/ftr-logo-28.png 1x, ../assets/img/ftr-logo-56.png 2x"
              alt="FTR — First Time Right" width="79" height="28" loading="lazy">
         <p class="footer__about">Mission-critical construction, commissioning, skills and India market entry.</p>
-        <p class="footer__contact"><a href="mailto:general@ftright.com">general@ftright.com</a></p>
+        <p class="footer__contact"><a href="mailto:info@ftright.com">info@ftright.com</a></p>
       </div>
 
       <div class="footer__col">

@@ -20,57 +20,7 @@
    --progress (0–1) is set on :root by main.js.
    ============================================================ */
 
-.spine {
-  position: fixed;
-  left: var(--spine-inset);
-  top: 18vh;
-  bottom: 18vh;
-  width: 2rem;
-  z-index: 50;
-  pointer-events: none;
-}
 
-.spine__rule,
-.spine__fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: var(--spine-width);
-}
-.spine__rule { bottom: 0; background: var(--c-rule); }
-
-.spine__fill {
-  height: 100%;
-  background: linear-gradient(180deg, var(--c-accent-deep), var(--c-accent-bright));
-  transform: scaleY(var(--progress, 0));
-  transform-origin: top center;
-}
-
-/* The arrow rides the leading edge of the fill, marking how far
-   through the programme the reader has got.
-
-   It is NOT rotated. The arrow in the FTR mark rises to the right —
-   that gesture is the brand. Turning it to point downwards inverts
-   the meaning, and rotating a locked mark is a modification of it.
-   So the marker travels down the rule while the mark itself stays
-   in its true orientation, pointing forward into the page. */
-.spine__arrow {
-  position: absolute;
-  left: 0;
-  top: calc(var(--progress, 0) * 100%);
-  width: 30px;
-  height: auto;
-  transform: translate(-30%, -55%);
-  filter: drop-shadow(0 1px 3px color-mix(in srgb, var(--c-graphite-deep) 35%, transparent));
-}
-
-/* Below 1100px the page is too narrow to carry the spine without
-   crowding the measure. */
-@media (max-width: 1100px) { .spine { display: none; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .spine__fill, .spine__arrow { transition: none; }
-}
 
 
 /* ============================================================
@@ -865,7 +815,7 @@
   gap: var(--grid-gap);
 }
 .pool { min-width: 0; padding-top: var(--s-5); border-top: var(--rule-accent) solid var(--c-accent); }
-.pool__name { font-size: var(--fs-card); font-weight: var(--fw-semibold); letter-spacing: var(--ls-h3); margin-bottom: var(--s-3); }
+.pool__name { font-size: var(--fs-h3); font-weight: var(--fw-medium); letter-spacing: var(--ls-h3); margin-bottom: var(--s-3); }
 .pool__text { font-size: var(--fs-sm); color: var(--c-ink-mute); text-wrap: pretty; }
 
 @media (max-width: 900px) {
@@ -912,7 +862,7 @@
 }
 .door__link:hover, .door__link:focus-visible { background: var(--c-white); }
 .door__link:hover::before, .door__link:focus-visible::before { transform: scaleX(1); }
-.door__title { font-family: var(--f-display); font-size: var(--fs-card); font-weight: var(--fw-semibold); line-height: var(--lh-heading); letter-spacing: var(--ls-h3); text-wrap: balance; }
+.door__title { font-family: var(--f-display); font-size: var(--fs-h3); font-weight: var(--fw-medium); line-height: 1.2; letter-spacing: var(--ls-h3); text-wrap: balance; }
 .door__text { font-size: var(--fs-sm); color: var(--c-ink-mute); text-wrap: pretty; }
 .door__cta { margin-top: auto; display: inline-flex; align-items: center; gap: var(--s-3); font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--c-accent-ink); }
 .door__link:hover .link__arrow { transform: translateX(4px); }
@@ -951,3 +901,6 @@
 .leader__role { font-size: var(--fs-xs); letter-spacing: var(--ls-caps); text-transform: uppercase; color: var(--c-accent-ink); margin-bottom: var(--s-3); }
 .leader__does { font-size: var(--fs-sm); color: var(--c-ink-mute); text-wrap: pretty; }
 @media (max-width: 760px) { .leaders { grid-template-columns: 1fr; max-width: 26rem; } }
+
+/* One-sentence sections take the tight rhythm, so a statement never sits in a void. */
+#intro { padding-block: var(--s-section-tight); }

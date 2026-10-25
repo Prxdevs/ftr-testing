@@ -2,11 +2,11 @@
 // Header and footer are generated here ONCE so they cannot drift between pages.
 //
 // Client brief (5 Oct 2026): header = logo left, menu, one button "Discuss your project" right.
-// Footer = logo, one-line description, three service links, general@ftright.com, LinkedIn
+// Footer = logo, one-line description, three service links, info@ftright.com, LinkedIn
 // (URL to follow, so omitted), legal name in Title Case, Privacy, Terms, copyright. NO address.
 const { write, organization, arrowImg } = require('./lib');
 
-const EMAIL = 'general@ftright.com';
+const EMAIL = 'info@ftright.com';
 const LEGAL = 'Ftright Tech-Infra &amp; Solutions Private Limited';
 const CIN = 'U42909GJ2026PTC181309';
 
@@ -171,13 +171,10 @@ ${file ? '' : `<link rel="canonical" href="${canonical}">`}${noindex ? '\n<meta 
 <link rel="icon" href="${P}assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="${P}assets/img/favicon-180.png">
 
+<link rel="preload" href="${P}assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="${P}assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="${P}assets/css/fonts.css">
-<link rel="stylesheet" href="${P}assets/css/tokens.css">
-<link rel="stylesheet" href="${P}assets/css/base.css">
-<link rel="stylesheet" href="${P}assets/css/brief.css">
-${css.map((c) => `<link rel="stylesheet" href="${P}assets/css/${c}.css">`).join('\n')}
+<link rel="stylesheet" href="${P}assets/css/site${css.length ? '-' + css.join('-') : ''}.css">
 
 <script type="application/ld+json">
 ${JSON.stringify(graph, null, 2)}
@@ -187,6 +184,12 @@ ${JSON.stringify(graph, null, 2)}
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="spine" aria-hidden="true">
+  <span class="spine__rule"></span>
+  <span class="spine__fill"></span>
+  <img class="spine__arrow" src="${P}assets/img/ftr-arrow-24.png" srcset="${P}assets/img/ftr-arrow-24.png 1x, ${P}assets/img/ftr-arrow-48.png 2x" alt="" width="24" height="16">
+</div>
 
 ${header(P, { stuck, slug })}
 

@@ -18,13 +18,10 @@
 <link rel="icon" href="../../assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="../../assets/img/favicon-180.png">
 
+<link rel="preload" href="../../assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="../../assets/css/fonts.css">
-<link rel="stylesheet" href="../../assets/css/tokens.css">
-<link rel="stylesheet" href="../../assets/css/base.css">
-<link rel="stylesheet" href="../../assets/css/brief.css">
-
+<link rel="stylesheet" href="../../assets/css/site.css">
 
 <script type="application/ld+json">
 {
@@ -46,7 +43,7 @@
         {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "general@ftright.com"
+          "email": "info@ftright.com"
         }
       ]
     },
@@ -89,6 +86,12 @@
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="spine" aria-hidden="true">
+  <span class="spine__rule"></span>
+  <span class="spine__fill"></span>
+  <img class="spine__arrow" src="../../assets/img/ftr-arrow-24.png" srcset="../../assets/img/ftr-arrow-24.png 1x, ../../assets/img/ftr-arrow-48.png 2x" alt="" width="24" height="16">
+</div>
 
 <header class="header is-stuck">
   <div class="shell header__bar">
@@ -204,7 +207,7 @@
         </ol>
       </nav>
       <span class="label phero__label reveal">Critical Construction &amp; Consultancy</span>
-      <h1 class="display phero__title wipe" id="h1">Mission-critical M&amp;E delivery, right first time.</h1>
+      <h1 class="display phero__title" id="h1">Mission-critical M&amp;E delivery, right first time.</h1>
       <p class="phero__lede reveal">Semiconductor fabs, data centres and cleanrooms are a different facility class &mdash; general M&amp;E practice does not transfer. FTR brings Irish and European mission-critical execution standards to Indian projects, as specialist consultants or as the delivery contractor.</p>
       <div class="phero__actions reveal"><a class="btn btn--primary" href="../../contact/?type=critical-construction">Discuss your project</a></div>
     </div>
@@ -222,18 +225,18 @@
         </div>
       </div>
       <ul class="cards3">
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">01</span><span class="meter" role="img" aria-label="Scope 1 of 3"><i class="on"></i><i></i><i></i><span class="meter__cap">Advice</span></span><h3 class="card3__title">Specialist consultancy</h3><p class="card3__text">Planning, quality assurance/control and commissioning consultancy on client or contractor teams.</p></div></li>
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">02</span><span class="meter" role="img" aria-label="Scope 2 of 3"><i class="on"></i><i class="on"></i><i></i><span class="meter__cap">Packages</span></span><h3 class="card3__title">Package delivery</h3><p class="card3__text">Defined M&amp;E packages &mdash; e.g. process piping, cleanroom fit-out, HVAC, electrical, commissioning.</p></div></li>
-        <li class="card3 card3--static reveal"><div class="card3__box"><span class="card3__num">03</span><span class="meter" role="img" aria-label="Scope 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i><span class="meter__cap">Everything</span></span><h3 class="card3__title">Full EPC</h3><p class="card3__text">Complete critical-construction delivery for semiconductor and data centre projects.</p></div></li>
+        <li class="card3 card3--static card3--photo reveal"><div class="card3__box"><div class="card3__photo"><img src="../../assets/img/site-engineer-1024.webp" srcset="../../assets/img/site-engineer-640.webp 640w, ../../assets/img/site-engineer-1024.webp 1024w, ../../assets/img/site-engineer-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 33vw" alt="Engineer in a hard hat and high-visibility vest on site" width="1024" height="682" loading="lazy" decoding="async"></div><div class="card3__body"><span class="card3__num">01</span><span class="meter" role="img" aria-label="Scope 1 of 3"><i class="on"></i><i></i><i></i><span class="meter__cap">Advice</span></span><h3 class="card3__title">Specialist consultancy</h3><p class="card3__text">Planning, quality assurance/control and commissioning consultancy on client or contractor teams.</p></div></div></li>
+        <li class="card3 card3--static card3--photo reveal"><div class="card3__box"><div class="card3__photo"><img src="../../assets/img/pipe-fitting-1024.webp" srcset="../../assets/img/pipe-fitting-640.webp 640w, ../../assets/img/pipe-fitting-1024.webp 1024w, ../../assets/img/pipe-fitting-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 33vw" alt="Hands fitting insulated pipework" width="1024" height="682" loading="lazy" decoding="async"></div><div class="card3__body"><span class="card3__num">02</span><span class="meter" role="img" aria-label="Scope 2 of 3"><i class="on"></i><i class="on"></i><i></i><span class="meter__cap">Packages</span></span><h3 class="card3__title">Package delivery</h3><p class="card3__text">Defined M&amp;E packages &mdash; e.g. process piping, cleanroom fit-out, HVAC, electrical, commissioning.</p></div></div></li>
+        <li class="card3 card3--static card3--photo reveal"><div class="card3__box"><div class="card3__photo"><img src="../../assets/img/plant-exterior-1024.webp" srcset="../../assets/img/plant-exterior-640.webp 640w, ../../assets/img/plant-exterior-1024.webp 1024w, ../../assets/img/plant-exterior-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 33vw" alt="Industrial plant exterior with stacks and steel platforms" width="1024" height="682" loading="lazy" decoding="async"></div><div class="card3__body"><span class="card3__num">03</span><span class="meter" role="img" aria-label="Scope 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i><span class="meter__cap">Full scope</span></span><h3 class="card3__title">Full EPC</h3><p class="card3__text">Complete critical-construction delivery for semiconductor and data centre projects.</p></div></div></li>
       </ul>
     </div>
   </section>
 
   <section class="band" aria-labelledby="class-h">
     <div class="figure band__media band__media--dim">
-      <img src="../../assets/img/data-hall-1600.webp"
-           srcset="../../assets/img/data-hall-640.webp 640w, ../../assets/img/data-hall-1024.webp 1024w, ../../assets/img/data-hall-1600.webp 1600w"
-           sizes="100vw" alt="Server cabinets in a data hall" width="1600" height="1066" loading="lazy" decoding="async">
+      <img src="../../assets/img/transformers-1600.webp"
+           srcset="../../assets/img/transformers-640.webp 640w, ../../assets/img/transformers-1024.webp 1024w, ../../assets/img/transformers-1600.webp 1600w"
+           sizes="100vw" alt="Row of high-voltage transformer bushings" width="1600" height="1066" loading="lazy" decoding="async">
     </div>
     <div class="shell band__inner">
       <div class="band__copy">
@@ -259,19 +262,19 @@
           <p class="lead">Paul Colleary brings 30+ years of mission-critical M&amp;E delivery across Europe (Suir Engineering, Jones Engineering, AM Technical Solutions). The team is Irish, European and Indian, with projects delivered across Europe.</p>
         </div>
       </div>
-      <ul class="team team--3">
+      <ul class="team">
         <li class="member reveal">
           <span class="member__photo" data-initials="PC" aria-hidden="true"></span>
           <div>
             <h3 class="member__name">Paul Colleary</h3>
-            <p class="member__role">Executive Director, Operations &amp; Co-Founder</p>
+            <p class="member__role">Executive Director, Operations</p>
           </div>
         </li>
         <li class="member reveal">
           <span class="member__photo" data-initials="TR" aria-hidden="true"></span>
           <div>
             <h3 class="member__name">Trushti Raval</h3>
-            <p class="member__role">CEO &amp; Director</p>
+            <p class="member__role">Executive Director &amp; CEO</p>
           </div>
         </li>
         <li class="member reveal">
@@ -291,7 +294,10 @@
         <span class="gate__num">03</span>
         <span class="label">What you get</span>
       </div>
-      <p class="statement" id="points-h">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>
+      <div class="pointsplit">
+        <p class="statement" id="points-h">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>
+        <div class="pointsplit__photo reveal"><img src="../../assets/img/substation-1024.webp" srcset="../../assets/img/substation-640.webp 640w, ../../assets/img/substation-1024.webp 1024w, ../../assets/img/substation-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 40vw" alt="Electrical substation with steel structures and lines" width="1024" height="682" loading="lazy" decoding="async"></div>
+      </div>
     </div>
   </section>
 
@@ -303,7 +309,7 @@
         <p class="lead cta__text">Tell us about the facility, the programme and the constraint. A member of the FTR team will reply.</p>
         <div class="cta__actions">
           <a class="btn btn--primary" href="../../contact/?type=critical-construction">Discuss your project</a>
-          <a class="btn btn--outline" href="mailto:general@ftright.com">general@ftright.com</a>
+          <a class="btn btn--outline" href="mailto:info@ftright.com">info@ftright.com</a>
         </div>
       </div>
     </div>
@@ -322,7 +328,7 @@
              srcset="../../assets/img/ftr-logo-28.png 1x, ../../assets/img/ftr-logo-56.png 2x"
              alt="FTR — First Time Right" width="79" height="28" loading="lazy">
         <p class="footer__about">Mission-critical construction, commissioning, skills and India market entry.</p>
-        <p class="footer__contact"><a href="mailto:general@ftright.com">general@ftright.com</a></p>
+        <p class="footer__contact"><a href="mailto:info@ftright.com">info@ftright.com</a></p>
       </div>
 
       <div class="footer__col">

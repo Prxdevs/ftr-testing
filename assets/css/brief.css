@@ -71,7 +71,7 @@
 /* Service cards with a photograph: same ratio, same body block on all three. */
 .card3__link--photo { padding: 0; gap: 0; overflow: hidden; }
 .card3__photo { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--c-graphite); }
-.card3__photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
+.card3__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
 .card3__link--photo:hover .card3__photo img { transform: scale(1.04); filter: grayscale(0.1); }
 .card3__body { display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6); flex: 1; }
 .card3__link--photo .card3__title { min-height: calc(2 * var(--lh-heading) * 1em); }
@@ -84,11 +84,12 @@
 .ptiles--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .ptile { display: flex; flex-direction: column; min-width: 0; background: var(--c-white); border: var(--hairline) solid var(--c-rule); border-top: var(--rule-accent) solid var(--c-accent); }
 .ptile__media { aspect-ratio: 4 / 3; overflow: hidden; background: var(--c-graphite); }
-.ptile__media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
+.ptile__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
 .ptile:hover .ptile__media img { transform: scale(1.04); filter: grayscale(0.1); }
 .ptile__body { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); flex: 1; }
-.ptile__title { font-size: var(--fs-card); font-weight: var(--fw-semibold); letter-spacing: var(--ls-h3); line-height: var(--lh-heading); color: var(--c-heading); text-wrap: balance; }
+.ptile__title { font-size: var(--fs-h4); font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--c-heading); text-wrap: balance; }
 .ptile__text { font-size: var(--fs-sm); color: var(--c-text); text-wrap: pretty; }
+.ptiles--3 .ptile__title { font-size: var(--fs-card); }
 @media (max-width: 1100px) { .ptiles--4, .ptiles--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ptiles--3 { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .ptiles--4, .ptiles--5 { grid-template-columns: 1fr; } }
 
@@ -115,7 +116,7 @@
 .hstep::before { content: ""; position: absolute; left: 0; right: 0; top: 0.5rem; height: var(--hairline); background: var(--c-rule); }
 .hstep::after { content: ""; position: absolute; left: 0; top: 0; width: 1rem; height: 1rem; border-radius: var(--radius-pill); background: var(--c-white); border: var(--rule-accent) solid var(--c-accent); }
 .hstep__num { display: block; margin-bottom: var(--s-3); font-size: var(--fs-gate); letter-spacing: var(--ls-caps); color: var(--c-accent-ink); }
-.hstep__title { font-size: var(--fs-card); font-weight: var(--fw-semibold); letter-spacing: var(--ls-h3); line-height: var(--lh-heading); margin-bottom: var(--s-2); }
+.hstep__title { font-size: var(--fs-h4); font-weight: var(--fw-semibold); margin-bottom: var(--s-2); }
 .hstep__text { font-size: var(--fs-sm); color: var(--c-ink-mute); text-wrap: pretty; }
 @media (max-width: 1000px) {
   .hsteps { grid-template-columns: 1fr; }
@@ -123,14 +124,21 @@
   .hstep::before { left: 0.5rem; right: auto; top: 0; bottom: 0; width: var(--hairline); height: auto; }
 }
 
-/* The pattern (Home): a rising staircase on a light (paper) surface, so it sits between
-   the dark Sectors panels and the Why FTR section instead of fusing with them. Four steps
-   stand complete; India's is solid where under way and dashed where FTR helps it rise. */
+/* The pattern (Home): a rising staircase over a quiet photograph. Four steps stand
+   complete; India's is solid where under way and dashed where FTR helps it rise. */
+.pattern { position: relative; overflow: hidden; }
+.pattern__bg { position: absolute; inset: 0; z-index: 0; }
+.pattern__bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+.pattern__bg::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(95deg, color-mix(in srgb, var(--c-graphite) 96%, transparent) 0%, color-mix(in srgb, var(--c-graphite) 84%, transparent) 55%, color-mix(in srgb, var(--c-graphite) 72%, transparent) 100%);
+}
+.pattern > .shell { position: relative; z-index: 1; }
 .pattern__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-9) var(--grid-gap); align-items: center; margin-top: var(--s-8); }
 .pattern__copy { display: grid; gap: var(--s-6); align-content: start; }
-.pattern__copy .lead { text-wrap: pretty; max-width: 40ch; }
+.pattern__copy .lead { color: var(--c-on-navy-mute); text-wrap: pretty; max-width: 40ch; }
 
-.pchart { border-bottom: var(--hairline) solid var(--c-rule); padding-top: var(--s-6); }
+.pchart { border-bottom: var(--hairline) solid var(--c-graphite-line); padding-top: var(--s-6); }
 .pchart__steps {
   list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-3);
@@ -146,28 +154,28 @@
 .pstep__bar {
   position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
   height: calc(var(--lvl) * 1%); min-height: 3rem; padding: var(--s-4);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--c-graphite) 14%, transparent), color-mix(in srgb, var(--c-graphite) 4%, transparent));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c-white) 13%, transparent), color-mix(in srgb, var(--c-white) 3%, transparent));
   border-top: var(--rule-accent) solid var(--c-accent);
   transform: scaleY(0); transform-origin: bottom;
   transition: transform var(--d-slow) var(--ease);
   transition-delay: calc(var(--stagger) * var(--i) * 3);
 }
-.pstep__num { font-size: var(--fs-gate); font-weight: var(--fw-semibold); letter-spacing: var(--ls-caps); color: var(--c-number); }
+.pstep__num { font-size: var(--fs-gate); font-weight: var(--fw-semibold); letter-spacing: var(--ls-caps); color: var(--c-accent-bright); }
 .pstep__name {
-  font-size: var(--fs-label); font-weight: var(--fw-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-heading);
+  font-size: var(--fs-label); font-weight: var(--fw-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--c-on-navy);
   opacity: 0; transition: opacity var(--d-base) var(--ease); transition-delay: calc(var(--stagger) * (var(--i) * 3 + 6));
 }
 
 /* India: copper where under way, dashed where it rises next. */
 .pstep--next .pstep__bar {
-  background: linear-gradient(0deg, color-mix(in srgb, var(--c-accent) 55%, transparent) 0, color-mix(in srgb, var(--c-accent) 26%, transparent) 46%, transparent 46%);
-  border: var(--hairline) dashed var(--c-accent); border-top: var(--rule-accent) solid var(--c-accent);
+  background: linear-gradient(0deg, color-mix(in srgb, var(--c-accent) 55%, transparent) 0, color-mix(in srgb, var(--c-accent) 30%, transparent) 46%, transparent 46%);
+  border: var(--hairline) dashed var(--c-accent-bright); border-top: var(--rule-accent) solid var(--c-accent-bright);
 }
-.pstep--next .pstep__num, .pstep--next .pstep__name { color: var(--c-accent-ink); }
-.pstep__arrow { position: absolute; right: var(--s-4); top: var(--s-4); width: 1.5rem; height: auto; color: var(--c-accent-ink); transform: rotate(-90deg); }
+.pstep--next .pstep__num, .pstep--next .pstep__name { color: var(--c-accent-bright); }
+.pstep__arrow { position: absolute; right: var(--s-4); top: var(--s-4); width: 1.5rem; height: auto; color: var(--c-accent-bright); transform: rotate(-90deg); }
 .pstep__tag {
   align-self: stretch; margin: var(--s-7) 0 auto; padding-top: var(--s-3);
-  font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1.3; color: var(--c-heading); text-wrap: balance;
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: 1.3; color: var(--c-white); text-wrap: balance;
   opacity: 0; transform: translateY(0.5rem);
   transition: opacity var(--d-base) var(--ease), transform var(--d-base) var(--ease);
   transition-delay: calc(var(--stagger) * 22);
@@ -184,11 +192,88 @@
   .pstep { flex-direction: row-reverse; align-items: center; justify-content: flex-end; gap: var(--s-4); padding-bottom: 0; }
   .pstep__name { flex: 0 0 6.25rem; }
   .pstep__bar { height: 3rem; min-height: 0; flex-direction: row; align-items: center; justify-content: flex-start; gap: var(--s-4); padding-block: 0; width: calc(var(--lvl) * 1%); transform: scaleX(0); transform-origin: left; }
-  .pstep--next .pstep__bar { height: 4rem; background: linear-gradient(90deg, color-mix(in srgb, var(--c-accent) 50%, transparent) 0, color-mix(in srgb, var(--c-accent) 24%, transparent) 46%, transparent 46%); border: var(--hairline) dashed var(--c-accent); border-left: var(--rule-accent) solid var(--c-accent); }
+  .pstep--next .pstep__bar { height: 4rem; background: linear-gradient(90deg, color-mix(in srgb, var(--c-accent) 50%, transparent) 0, color-mix(in srgb, var(--c-accent) 28%, transparent) 46%, transparent 46%); border: var(--hairline) dashed var(--c-accent-bright); border-left: var(--rule-accent) solid var(--c-accent-bright); }
   .pstep__tag { align-self: center; margin: 0 0 0 auto; padding: 0; text-align: right; }
   .pstep__arrow { position: static; transform: none; width: 1.25rem; }
   .pchart.is-in .pstep__bar, .no-js .pstep__bar { transform: scaleX(1); }
 }
+
+/* Statement beside a photograph (Critical Construction "What you get"). */
+.pointsplit { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--grid-gap); align-items: center; margin-top: var(--s-8); }
+.pointsplit__photo { aspect-ratio: 4 / 3; overflow: hidden; border-top: var(--rule-accent) solid var(--c-accent); }
+.pointsplit__photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.55) contrast(1.06); }
+@media (max-width: 900px) { .pointsplit { grid-template-columns: 1fr; } }
+
+/* Colour in words: key terms in copper. */
+.hl { color: var(--c-accent-ink); font-weight: var(--fw-semibold); }
+.on-navy .hl { color: var(--c-accent-bright); }
+
+/* About: "What FTR does" with sector chips, full-colour photographs and a mission card. */
+.who { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-9) var(--grid-gap); align-items: start; margin-top: var(--s-8); }
+.who__copy { display: grid; gap: var(--s-6); align-content: start; }
+.who__copy .lead { color: var(--c-text); max-width: 52ch; text-wrap: pretty; }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.chip { display: inline-flex; align-items: center; gap: var(--s-3); padding: var(--s-3) var(--s-4); font-size: var(--fs-sm); font-weight: var(--fw-medium); color: var(--c-heading); border: var(--hairline) solid color-mix(in srgb, var(--c-accent) 45%, transparent); background: color-mix(in srgb, var(--c-accent) 9%, var(--c-white)); }
+.chip .icon { width: 1.25rem; height: 1.25rem; }
+.who__media { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start; }
+.who__photo { margin: 0; aspect-ratio: 3 / 4; overflow: hidden; border-top: var(--rule-accent) solid var(--c-accent); background: var(--c-graphite); }
+.who__photo--low { margin-top: var(--s-8); }
+.who__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-slow) var(--ease); }
+.who__photo:hover img { transform: scale(1.04); }
+.who__mission { grid-column: 1 / -1; display: grid; gap: var(--s-4); padding: var(--s-8) var(--s-9); border-left: var(--s-2) solid var(--c-accent); }
+.who__quote { font-size: var(--fs-statement); line-height: 1.25; font-weight: var(--fw-medium); letter-spacing: -0.01em; color: var(--c-white); max-width: 34ch; text-wrap: balance; }
+@media (max-width: 900px) { .who { grid-template-columns: 1fr; } .who__mission { padding: var(--s-7) var(--s-6); } }
+
+/* Ten-industry panels (Home): intro across the top, five panels per row. */
+.sectors--ten { grid-template-columns: 1fr; min-height: 0; }
+.sectors--ten .sectors__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--grid-gap); align-items: end; grid-template-areas: "head head" "title text" "title all"; }
+.sectors--ten .sectors__head { grid-area: head; }
+.sectors--ten .sectors__title { grid-area: title; margin-bottom: 0; }
+.sectors--ten .sectors__text { grid-area: text; margin-bottom: var(--s-5); max-width: 40ch; }
+.sectors--ten .sectors__all { grid-area: all; }
+.sectors--ten .sectors__disciplines { display: none; }
+.sectors--ten .sectors__panels { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: minmax(clamp(15rem, 11rem + 9vw, 19rem), 1fr); }
+.sectors--ten .sector { border-left: var(--hairline) solid color-mix(in srgb, var(--c-white) 10%, transparent); border-top: var(--hairline) solid color-mix(in srgb, var(--c-white) 10%, transparent); }
+.sectors--ten .sector:nth-child(5n + 1) { border-left: none; }
+.sectors--ten .sector:nth-child(-n + 5) { border-top: none; }
+.sectors--ten .sector__title { font-size: var(--fs-h4); line-height: var(--lh-heading); }
+.sectors--ten .sector__num { margin-bottom: var(--s-4); }
+.sectors--ten .sector__foot { justify-content: flex-end; }
+@media (max-width: 1100px) {
+  .sectors--ten .sectors__intro { grid-template-columns: 1fr; grid-template-areas: "head" "title" "text" "all"; row-gap: var(--s-4); }
+  .sectors--ten .sectors__panels { grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 0; grid-auto-rows: minmax(13rem, 1fr); }
+  .sectors--ten .sector, .sectors--ten .sector:nth-child(5n + 1) { border-left: var(--hairline) solid color-mix(in srgb, var(--c-white) 10%, transparent); border-top: var(--hairline) solid color-mix(in srgb, var(--c-white) 10%, transparent); }
+  .sectors--ten .sector:nth-child(odd) { border-left: none; }
+  .sectors--ten .sector:nth-child(-n + 2) { border-top: none; }
+}
+@media (max-width: 560px) {
+  .sectors--ten .sectors__panels { grid-template-columns: 1fr; }
+  .sectors--ten .sector, .sectors--ten .sector:nth-child(odd) { border-left: none; }
+  .sectors--ten .sector:nth-child(-n + 2) { border-top: var(--hairline) solid color-mix(in srgb, var(--c-white) 10%, transparent); }
+  .sectors--ten .sector:first-child { border-top: none; }
+  .sectors--ten .sector__link { min-height: 12rem; }
+}
+
+/* Ten sector cards (Sectors page): five across. */
+.cards3--ten { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-5); }
+.cards3--ten .card3__body { padding: var(--s-5); }
+.cards3--ten .card3__title { font-size: var(--fs-h4); }
+.cards3--ten .card3__photo { aspect-ratio: 4 / 3; }
+@media (max-width: 1100px) { .cards3--ten { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .cards3--ten { grid-template-columns: 1fr; } }
+
+/* Why FTR: alternating photo rows, so the page is not the Home tiles again. */
+.zig { list-style: none; margin: var(--s-9) 0 0; padding: 0; display: grid; gap: var(--s-10); }
+.zig__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-9) var(--grid-gap); align-items: center; }
+.zig__row:nth-child(even) .zig__media { order: 2; }
+.zig__media { aspect-ratio: 3 / 2; overflow: hidden; border-top: var(--rule-accent) solid var(--c-accent); background: var(--c-graphite); }
+.zig__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-slow) var(--ease); }
+.zig__row:hover .zig__media img { transform: scale(1.03); }
+.zig__copy { display: grid; gap: var(--s-4); justify-items: start; }
+.zig__num { font-size: var(--fs-stat); font-weight: var(--fw-medium); line-height: 1; letter-spacing: var(--ls-h1); color: var(--c-accent-ink); }
+.zig__title { font-size: var(--fs-title); line-height: var(--lh-tight); letter-spacing: var(--ls-h2); color: var(--c-heading); text-wrap: balance; }
+.zig__text { font-size: var(--fs-lead); line-height: var(--lh-lead); color: var(--c-text); max-width: 34ch; text-wrap: pretty; }
+@media (max-width: 900px) { .zig__row { grid-template-columns: 1fr; } .zig__row:nth-child(even) .zig__media { order: 0; } .zig { gap: var(--s-9); } }
 
 /* Sourced stat note */
 .stat__src { display: block; margin-top: var(--s-3); font-size: var(--fs-xs); color: var(--c-ink-faint); }
@@ -231,48 +316,6 @@
 .statement strong { color: var(--c-accent-ink); font-weight: inherit; }
 .on-navy .statement strong { color: var(--c-accent-bright); }
 
-/* Home intro: the same sentence at the standard statement size (below the H2 scale), against a copper rule. Body is quiet, the key
-   phrase is full ink and is underlined by a rule that draws itself when the gate releases. */
-#intro .statement {
-  max-width: 40ch; color: var(--c-text);
-  padding-left: var(--s-7); border-left: var(--rule-accent) solid var(--c-accent);
-}
-#intro .statement strong {
-  color: var(--c-heading); padding-bottom: 0.04em;
-  background: linear-gradient(var(--c-accent), var(--c-accent)) left bottom / 0% var(--rule-accent) no-repeat;
-  transition: background-size var(--d-release) var(--ease); transition-delay: var(--d-base);
-}
-#intro.is-released .statement strong, .no-js #intro .statement strong { background-size: 100% var(--rule-accent); }
-@media (max-width: 640px) { #intro .statement { padding-left: var(--s-5); } }
-
-/* Gauge: a measuring rule under the statement. A copper marker travels the scale and
-   settles inside the target bracket: right first time, shown rather than said. */
-.gauge {
-  --hit: 72%; --mark: var(--s-6);
-  position: relative; height: var(--s-9); margin-top: var(--s-9);
-  border-bottom: var(--hairline) solid var(--c-ink-faint);
-  background:
-    repeating-linear-gradient(90deg, var(--c-ink-faint) 0 var(--hairline), transparent var(--hairline) 3.75rem) left bottom / 100% 70% no-repeat,
-    repeating-linear-gradient(90deg, var(--c-rule) 0 var(--hairline), transparent var(--hairline) 0.75rem) left bottom / 100% 38% no-repeat;
-}
-.gauge::before {
-  content: ""; position: absolute; bottom: 0; left: var(--hit); width: var(--mark); height: 100%;
-  transform: translateX(-50%); border: var(--hairline) dashed var(--c-accent); border-bottom: 0;
-  opacity: 0; transition: opacity var(--d-base) var(--ease); transition-delay: calc(var(--d-release) + var(--d-base));
-}
-.gauge__mark {
-  position: absolute; bottom: 0; left: 0; width: var(--rule-accent); height: 100%;
-  background: var(--c-accent); transform: translateX(-50%);
-  transition: left calc(var(--d-release) * 1.6) var(--ease); transition-delay: var(--d-base);
-}
-.gauge__mark::before {
-  content: ""; position: absolute; top: calc(var(--s-3) * -1); left: 50%; width: var(--s-3); height: var(--s-3);
-  background: var(--c-accent); transform: translateX(-50%); clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-#intro.is-released .gauge__mark, .no-js #intro .gauge__mark { left: var(--hit); }
-#intro.is-released .gauge::before, .no-js #intro .gauge::before { opacity: 1; }
-@media (max-width: 640px) { .gauge { --hit: 66%; margin-top: var(--s-7); height: var(--s-8); } }
-
 /* Three-up facts (Home market context) */
 .facts--3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .facts--3 { grid-template-columns: 1fr; row-gap: var(--s-7); } .facts--3 .fact + .fact { padding-left: 0; } }
@@ -287,7 +330,7 @@
 @media (max-width: 700px) { .kv > div { grid-template-columns: 1fr; } }
 
 /* Leadership: two members, equal weight. Photo slot until headshots arrive. */
-.team { list-style: none; margin: var(--s-9) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--grid-gap); max-width: 56rem; }
+.team { list-style: none; margin: var(--s-9) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: var(--s-8) var(--grid-gap); }
 .member { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--s-6); align-items: start; }
 .member__photo { position: relative; aspect-ratio: 4 / 5; background: var(--c-graphite-soft); overflow: hidden; display: grid; place-items: center; }
 .member__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); }
@@ -298,11 +341,6 @@
 .member__bio { font-size: var(--fs-sm); color: var(--c-text); text-wrap: pretty; }
 .on-navy .member__role { color: var(--c-accent-bright); }
 .on-navy .member__bio { color: var(--c-on-navy-mute); }
-/* Three people: three equal columns, photo above the text. */
-.team--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
-.team--3 .member { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
-.team--3 .member__photo { width: 9rem; }
-@media (max-width: 960px) { .team--3 { grid-template-columns: 1fr; } .team--3 .member { grid-template-columns: 9rem minmax(0, 1fr); } }
 @media (max-width: 860px) { .team { grid-template-columns: 1fr; } }
 @media (max-width: 460px) { .member { grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--s-4); } }
 
@@ -347,7 +385,7 @@
 /* Sector cards with a photograph (Sectors page) */
 .card3--photo .card3__box { padding: 0; gap: 0; overflow: hidden; }
 .card3__photo { aspect-ratio: 16 / 9; overflow: hidden; background: var(--c-graphite); }
-.card3__photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
+.card3__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; filter: grayscale(0.55) contrast(1.06); transition: transform var(--d-slow) var(--ease), filter var(--d-slow) var(--ease); }
 .card3--photo:hover .card3__photo img { transform: scale(1.04); filter: grayscale(0.1); }
 .card3__body { display: flex; flex-direction: column; gap: var(--s-4); padding: var(--s-6); flex: 1; }
 .card3__links { display: grid; gap: var(--s-2); margin-top: auto; padding-top: var(--s-3); }
@@ -444,3 +482,5 @@
 
 /* Definition lists: no browser indent */
 dd { margin: 0; }
+
+.facts dd { margin: 0; }

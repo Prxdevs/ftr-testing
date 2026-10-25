@@ -5,27 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Page not found &mdash; FTR</title>
-<meta name="description" content="This page does not exist. Return to the FTR home page or contact general@ftright.com.">
+<meta name="description" content="This page does not exist. Return to the FTR home page or contact info@ftright.com.">
 
 <meta name="robots" content="noindex, follow">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ftright.com/">
 <meta property="og:title" content="Page not found &mdash; FTR">
-<meta property="og:description" content="This page does not exist. Return to the FTR home page or contact general@ftright.com.">
+<meta property="og:description" content="This page does not exist. Return to the FTR home page or contact info@ftright.com.">
 <meta property="og:image" content="https://ftright.com/assets/img/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/favicon-180.png">
 
+<link rel="preload" href="/assets/fonts/space-grotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
-<link rel="stylesheet" href="/assets/css/fonts.css">
-<link rel="stylesheet" href="/assets/css/tokens.css">
-<link rel="stylesheet" href="/assets/css/base.css">
-<link rel="stylesheet" href="/assets/css/brief.css">
-
+<link rel="stylesheet" href="/assets/css/site.css">
 
 <script type="application/ld+json">
 {
@@ -47,7 +44,7 @@
         {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "general@ftright.com"
+          "email": "info@ftright.com"
         }
       ]
     }
@@ -59,6 +56,12 @@
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="spine" aria-hidden="true">
+  <span class="spine__rule"></span>
+  <span class="spine__fill"></span>
+  <img class="spine__arrow" src="/assets/img/ftr-arrow-24.png" srcset="/assets/img/ftr-arrow-24.png 1x, /assets/img/ftr-arrow-48.png 2x" alt="" width="24" height="16">
+</div>
 
 <header class="header is-stuck">
   <div class="shell header__bar">
@@ -161,15 +164,13 @@
 
 
   <section class="phero phero--short" aria-labelledby="h1">
-    <div class="phero__photo">
-      <img src="/assets/img/pipe-runs-1600.webp"
-           srcset="/assets/img/pipe-runs-640.webp 640w, /assets/img/pipe-runs-1024.webp 1024w, /assets/img/pipe-runs-1600.webp 1600w"
-           sizes="100vw" alt="Insulated pipe runs and cable tray in a services corridor" width="1600" height="1066" fetchpriority="high" decoding="async">
+    <div class="phero__mark" aria-hidden="true">
+      <img src="/assets/img/ftr-mark.webp" alt="" width="1200" height="423">
     </div>
     <div class="shell phero__inner">
       <span class="label phero__label reveal">Page not found</span>
-      <h1 class="display phero__title wipe" id="h1">That page is not here.</h1>
-      <p class="phero__lede reveal">The link may be old. Start from the home page, or write to general@ftright.com.</p>
+      <h1 class="display phero__title" id="h1">That page is not here.</h1>
+      <p class="phero__lede reveal">The link may be old. Start from the home page, or write to info@ftright.com.</p>
     </div>
   </section>
 
@@ -201,7 +202,7 @@
              srcset="/assets/img/ftr-logo-28.png 1x, /assets/img/ftr-logo-56.png 2x"
              alt="FTR — First Time Right" width="79" height="28" loading="lazy">
         <p class="footer__about">Mission-critical construction, commissioning, skills and India market entry.</p>
-        <p class="footer__contact"><a href="mailto:general@ftright.com">general@ftright.com</a></p>
+        <p class="footer__contact"><a href="mailto:info@ftright.com">info@ftright.com</a></p>
       </div>
 
       <div class="footer__col">
