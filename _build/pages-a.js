@@ -164,9 +164,9 @@ function about() {
     title: 'About FTR &mdash; Mission-Critical Construction in India',
     desc: 'FTR is an India-based mission-critical M&amp;E construction, consultancy and skills company, led by people with 30+ years of European delivery experience.',
     schema: [crumbSchema([['Home', ''], ['About', 'about/']]),
+      { '@type': 'Person', name: 'Vishnubhai (ND) Chaudhari', jobTitle: 'Executive Director, Corporate Affairs', worksFor: { '@id': 'https://ftright.com/#organization' } },
       { '@type': 'Person', name: 'Paul Colleary', jobTitle: 'Executive Director, Operations', worksFor: { '@id': 'https://ftright.com/#organization' } },
-      { '@type': 'Person', name: 'Trushti Raval', jobTitle: 'Executive Director & CEO', worksFor: { '@id': 'https://ftright.com/#organization' } },
-      { '@type': 'Person', name: 'Vishnubhai (ND) Chaudhari', jobTitle: 'Executive Director of Corporate Affairs', worksFor: { '@id': 'https://ftright.com/#organization' } }],
+      { '@type': 'Person', name: 'Trushti Raval', jobTitle: 'CEO & Managing Director', worksFor: { '@id': 'https://ftright.com/#organization' } }],
     body: (P) => `
 ${hero({ P, label: 'About FTR', title: 'Irish and European mission-critical know-how, skilled and built into India&rsquo;s next generation of facilities.', lede: 'FTR (First Time Right) is an India-based mission-critical M&amp;E construction, consultancy and skills company.', photo: 'fire-main' })}
 
@@ -267,6 +267,7 @@ ${kv([
     ['AI Infrastructure layer', 'Across programmes, plus DCE-AI (AI Infrastructure Engineering) at Tier 3.'],
     ['Taught by', 'Resident Irish and European master trainers with live semiconductor project heritage (Ireland&rsquo;s Intel Leixlip / Fab 34 track record).'],
     ['Who can enrol', 'ITI pass-outs, diploma holders, B.E./B.Tech graduates, experienced site workers.'],
+    ['Lead contact', 'Vishnubhai (ND) Chaudhari.'],
     ['Sectors served', 'Semiconductor fabs, ATMP/OSAT, hyperscale and AI data centres, pharma and biotech, medical devices and hospitals, EV and battery gigafactories, renewables and green hydrogen, transmission and substations, defence and aerospace, electronics and display.'],
   ])}` })}
 
@@ -295,14 +296,15 @@ ${sec({ id: 'models', num: '01', label: 'Engagement models', body: `${head('Thre
 ${[
     ['site-engineer', 1, 'Advice', 'Specialist consultancy', 'Planning, quality assurance/control and commissioning consultancy on client or contractor teams.'],
     ['pipe-fitting', 2, 'Packages', 'Package delivery', 'Defined M&amp;E packages &mdash; e.g. process piping, cleanroom fit-out, HVAC, electrical, commissioning.'],
-    ['plant-exterior', 3, 'Full scope', 'Full EPC', 'Complete critical-construction delivery for semiconductor and data centre projects.'],
+    ['data-hall', 3, 'Full scope', 'Full EPC', 'Complete critical-construction delivery for semiconductor and data centre projects.'],
   ].map(([img, n, cap, t, x]) => `        <li class="card3 card3--static card3--photo reveal"><div class="card3__box"><div class="card3__photo">${photo(P, img)}</div><div class="card3__body"><span class="card3__num">0${n}</span>${meter(n, cap)}<h3 class="card3__title">${t}</h3><p class="card3__text">${x}</p></div></div></li>`).join('\n')}
       </ul>` })}
 
 ${band(P, { id: 'class-h', img: 'transformers', dim: true, label: 'A different facility class', title: 'General M&amp;E practice does not transfer.', text: 'Quality and commissioning are planned from day one, not bolted on at the end.', href: P + 'why-ftr/', linkText: 'Why FTR' })}
 
-${sec({ id: 'people', tone: 'on-paper', num: '02', label: 'Who delivers', body: `${head('Leadership and workforce track record.', 'Paul Colleary brings 30+ years of mission-critical M&amp;E delivery across Europe (Suir Engineering, Jones Engineering, AM Technical Solutions). The team is Irish, European and Indian, with projects delivered across Europe.')}
-${team(P, false)}` })}
+${sec({ id: 'people', tone: 'on-paper', num: '02', label: 'Who delivers', body: `${head('Leadership and workforce track record.', 'The team is Irish, European and Indian, with projects delivered across Europe.')}
+${team(P, false)}
+${kv([['Lead contacts', 'Trushti Raval and Paul Colleary.']])}` })}
 
 ${sec({ id: 'points', tone: 'on-navy', num: '03', label: 'What you get', body: `      <div class="pointsplit">
         <p class="statement" id="__H__">Quality. On-time delivery. Commissioning-led planning. Irish-standard governance. And a skilled workforce pipeline from <strong>Skills Development</strong>.</p>
@@ -344,7 +346,7 @@ ${sec({ id: 'detail', tone: 'on-paper', num: '02', label: 'What to expect', body
 ${route(['Ireland', 'Finland', 'Netherlands', 'Sweden', 'Denmark', 'Germany', 'Belgium', 'and wider Europe'])}
 ${kv([
     ['Permissions and licences', 'Driven through proven channels.'],
-    ['Lead contacts', 'Paul Colleary and Trushti Raval.'],
+    ['Lead contact', 'Paul Colleary.'],
   ])}` })}
 
 ${band(P, { id: 'pilot-h', img: 'steel-structure', dim: true, label: 'Pilot offer', title: '180-day target to construction readiness.', text: 'You keep every decision while FTR drives the work.', href: P + 'contact/?type=india-market-entry', linkText: 'Book an India entry call' })}

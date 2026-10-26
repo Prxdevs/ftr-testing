@@ -52,19 +52,32 @@ ${items.map((c) => `        <li class="card3 reveal">
         </li>`).join('\n')}
       </ul>`;
 
-// Team member; shows a photo if assets/img/people/<slug>.webp exists, else initials.
-const member = (P, { slug, name, role, bio, initials }) => {
-  const has = fs.existsSync(path.join(ROOT, 'assets/img/people', slug + '.webp'));
-  const pic = has
-    ? `<span class="member__photo member__photo--img"><img src="${P}assets/img/people/${slug}.webp" alt="${name}" width="360" height="450" loading="lazy"></span>`
-    : `<span class="member__photo" data-initials="${initials}" aria-hidden="true"></span>`;
+// Team member: a card (photo, or initials until the headshot is supplied) whose name opens
+// a profile dialog with the full biography. main.js wires [data-person] to its <dialog>.
+const pic = (P, { slug, name, initials }, cls) => (fs.existsSync(path.join(ROOT, 'assets/img/people', slug + '.webp'))
+  ? `<span class="${cls} ${cls}--img"><img src="${P}assets/img/people/${slug}.webp" alt="${name}" width="360" height="450" loading="lazy"></span>`
+  : `<span class="${cls}" data-initials="${initials}" aria-hidden="true"></span>`);
+const member = (P, person) => {
+  const { slug, name, role, bio = [] } = person;
+  const id = 'person-' + slug;
   return `        <li class="member reveal">
-          ${pic}
-          <div>
-            <h3 class="member__name">${name}</h3>
-            <p class="member__role">${role}</p>${bio ? `
-            <p class="member__bio">${bio}</p>` : ''}
-          </div>
+          ${pic(P, person, 'member__photo')}
+          <div class="member__text">
+            <h3 class="member__name"><button class="member__open" type="button" aria-haspopup="dialog" aria-controls="${id}" data-person="${id}">${name}</button></h3>
+            <p class="member__role">${role}</p>${bio.length ? `
+            <span class="member__more" aria-hidden="true">View profile <svg viewBox="0 0 16 11" width="14" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5.5h13.5M10 1l4.5 4.5L10 10"/></svg></span>` : ''}
+          </div>${bio.length ? `
+          <dialog class="person" id="${id}" aria-labelledby="${id}-h">
+            <div class="person__inner">
+              <button class="person__close" type="button"><span class="u-visually-hidden">Close profile</span><span aria-hidden="true">&times;</span></button>
+              ${pic(P, person, 'person__photo')}
+              <div class="person__body">
+                <h3 class="person__name" id="${id}-h">${name}</h3>
+                <p class="person__role">${role}</p>
+${bio.map((x) => `                <p class="person__bio">${x}</p>`).join('\n')}
+              </div>
+            </div>
+          </dialog>` : ''}
         </li>`;
 };
 
@@ -81,20 +94,29 @@ ${items.map(([label, value, note, src]) => `        <div class="fact reveal">
         </div>`).join('\n')}
       </dl>`;
 
+// Leadership, in the client's order (26 Oct 2026): ND Chaudhari, Paul Colleary, Trushti Raval.
 const PEOPLE = {
+  vishnubhai: { slug: 'vishnubhai-chaudhari', name: 'Vishnubhai (ND) Chaudhari', initials: 'VC', role: 'Executive Director, Corporate Affairs' },
   paul: { slug: 'paul-colleary', name: 'Paul Colleary', initials: 'PC', role: 'Executive Director, Operations' },
-  trushti: { slug: 'trushti-raval', name: 'Trushti Raval', initials: 'TR', role: 'Executive Director &amp; CEO' },
-  vishnubhai: { slug: 'vishnubhai-chaudhari', name: 'Vishnubhai (ND) Chaudhari', initials: 'VC', role: 'Executive Director of Corporate Affairs' },
+  trushti: { slug: 'trushti-raval', name: 'Trushti Raval', initials: 'TR', role: 'CEO &amp; Managing Director' },
 };
 const BIO = {
-  paul: '30+ years in mission-critical M&amp;E delivery across Ireland, Germany and wider Europe, rising from the trades to Manager of the Planning department. Experience with Suir Engineering, Jones Engineering and AM Technical Solutions. Has spent the last couple of years on a semiconductor project in India, so knows the industry from both European and Indian sides. Keen eye for quality; special interest in cleanroom fundamentals for semiconductor fabs.',
-  trushti: 'Electrical engineering degree (India); Business Management (Finance) (England). Past five years supporting European, Irish and British critical-infrastructure programmes &mdash; data centres, semiconductors, battery manufacturing &mdash; across all departments and CSA/MEP disciplines.',
+  vishnubhai: [
+    'ND (Vishnubhai) Chaudhari is Executive Director, Corporate Affairs at FTR. He brings more than 35 years of experience across Indian industry, real estate development and enterprise leadership. He has developed and built his own commercial centres, giving him first-hand command of project planning, approvals and construction delivery in the Indian market.',
+    'Over three decades, he has built long-standing, trusted relationships with senior leaders across the public sector and Indian industry. These relationships let FTR align its programmes with national and state priorities, and engage partners with credibility from the outset.',
+    'At FTR, he guides market strategy, institutional engagement and the company&rsquo;s long-term vision as India expands its semiconductor, data centre and critical infrastructure base.',
+  ],
+  paul: ['30+ years in mission-critical M&amp;E delivery across Ireland, Germany and wider Europe, rising from the trades to Manager of the Planning department. Experience with Suir Engineering, Jones Engineering and AM Technical Solutions. Has spent the last couple of years on a semiconductor project in India, so knows the industry from both European and Indian sides. Keen eye for quality; special interest in cleanroom fundamentals for semiconductor fabs.'],
+  trushti: [
+    'Electrical Engineering (India); Business Management, Finance (England).',
+    'Five years dedicated to European, Irish and British critical-infrastructure talent &mdash; data centres, semiconductors, battery manufacturing &mdash; across every CSA and MEP discipline.',
+  ],
 };
 
-const team = (P, withBio) => `      <ul class="team${withBio ? ' team--bio' : ''}">
-${member(P, { ...PEOPLE.paul, bio: withBio ? BIO.paul : '' })}
-${member(P, { ...PEOPLE.trushti, bio: withBio ? BIO.trushti : '' })}
-${member(P, { ...PEOPLE.vishnubhai, bio: '' })}
+// Every card opens its profile; `withBio` is kept for call compatibility.
+const ORDER = ['vishnubhai', 'paul', 'trushti'];
+const team = (P, withBio) => `      <ul class="team${withBio ? ' team--about' : ''}">
+${ORDER.map((k) => member(P, { ...PEOPLE[k], bio: BIO[k] })).join('\n')}
       </ul>`;
 
 // Photographic sector panels (the section the client liked), six of them.

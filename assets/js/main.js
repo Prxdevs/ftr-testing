@@ -389,6 +389,19 @@
     show(0);
   });
 
+  /* --- Leadership profiles ---
+     Each card's name is a button that opens that person's <dialog>. Esc,
+     the close button or a click on the backdrop closes it, and focus
+     returns to the card. */
+  document.querySelectorAll('[data-person]').forEach(function (btn) {
+    var dlg = document.getElementById(btn.getAttribute('data-person'));
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    btn.addEventListener('click', function () { dlg.showModal(); });
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg || e.target.closest('.person__close')) dlg.close();
+    });
+  });
+
   /* --- Reveal and hold-point release ---
      One observer drives every entrance. Elements are released once and
      then unobserved: replaying on scroll-back reads as decoration

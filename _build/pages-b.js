@@ -107,7 +107,7 @@ ${whyRows(P, ['process-valves', 'lab-interior', 'site-team', 'steel-tank'])}` })
        six characteristics of the mission-critical facility class. Text to follow from FTR;
        add a section here when supplied. -->
 
-${sec({ id: 'proof', tone: 'on-paper', num: '02', label: 'Proof', body: `${head('Proof is in the people.', 'Paul Colleary brings 30+ years of mission-critical M&amp;E delivery across Europe. The team is Irish, European and Indian, with projects delivered across Europe.')}
+${sec({ id: 'proof', tone: 'on-paper', num: '02', label: 'Proof', body: `${head('Proof is in the people.', 'The team is Irish, European and Indian, with projects delivered across Europe.')}
 ${team(P, false)}` })}
 
 ${ctaSection(P, {}, '', ' on-navy')}
