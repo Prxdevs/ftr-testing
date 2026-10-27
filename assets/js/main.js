@@ -398,7 +398,7 @@
     if (!dlg || typeof dlg.showModal !== 'function') return;
     btn.addEventListener('click', function () { dlg.showModal(); });
     dlg.addEventListener('click', function (e) {
-      if (e.target === dlg || e.target.closest('.person__close')) dlg.close();
+      if (e.target === dlg || e.target.closest('.profile__close')) dlg.close();
     });
   });
 

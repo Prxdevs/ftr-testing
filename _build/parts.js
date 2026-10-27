@@ -67,14 +67,14 @@ const member = (P, person) => {
             <p class="member__role">${role}</p>${bio.length ? `
             <span class="member__more" aria-hidden="true">View profile <svg viewBox="0 0 16 11" width="14" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 5.5h13.5M10 1l4.5 4.5L10 10"/></svg></span>` : ''}
           </div>${bio.length ? `
-          <dialog class="person" id="${id}" aria-labelledby="${id}-h">
-            <div class="person__inner">
-              <button class="person__close" type="button"><span class="u-visually-hidden">Close profile</span><span aria-hidden="true">&times;</span></button>
-              ${pic(P, person, 'person__photo')}
-              <div class="person__body">
-                <h3 class="person__name" id="${id}-h">${name}</h3>
-                <p class="person__role">${role}</p>
-${bio.map((x) => `                <p class="person__bio">${x}</p>`).join('\n')}
+          <dialog class="profile" id="${id}" aria-labelledby="${id}-h">
+            <div class="profile__inner">
+              <button class="profile__close" type="button"><span class="u-visually-hidden">Close profile</span><span aria-hidden="true">&times;</span></button>
+              ${pic(P, person, 'profile__photo')}
+              <div class="profile__body">
+                <h3 class="profile__name" id="${id}-h">${name}</h3>
+                <p class="profile__role">${role}</p>
+${bio.map((x) => `                <p class="profile__bio">${x}</p>`).join('\n')}
               </div>
             </div>
           </dialog>` : ''}
