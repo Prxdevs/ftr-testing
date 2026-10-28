@@ -101,7 +101,7 @@ function why() {
 ${hero({ P, label: 'Why FTR', title: 'Four reasons to choose FTR.', lede: 'Quality and delivery, planned from day one.', photo: 'cobot-gripper', short: true })}
 
 ${sec({ id: 'four', num: '01', label: 'Four differentiators', body: `${head('What sets FTR apart.')}
-${whyRows(P, ['process-valves', 'lab-interior', 'site-team', 'steel-tank'])}` })}
+${whyRows(P, ['panel-test', 'drawing-review', 'welding-training', 'plan-discussion'])}` })}
 
   <!-- SIX AREAS BLOCK (not published): "Where general M&E practice does not transfer" —
        six characteristics of the mission-critical facility class. Text to follow from FTR;

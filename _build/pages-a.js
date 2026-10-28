@@ -38,7 +38,10 @@ const WHY = [
 ];
 
 const WHY_ICONS = ['check', 'globe', 'people', 'link'];
-const WHY_IMG = ['panel-test', 'factory-engineer', 'team-machine', 'plant-aerial'];
+// Each photo shows its point: testing (right first time), a senior engineer guiding a colleague
+// (Irish and European standards), trainees at work (workforce built in), a team planning together (one partner).
+// Home avoids the photos already used by its service cards.
+const WHY_IMG = ['panel-test', 'drawing-review', 'workshop-trainees', 'laptop-review'];
 const whyRows = (P = '', imgs = WHY_IMG) => `      <ol class="zig">
 ${WHY.map(([t, x], i) => `        <li class="zig__row reveal">
           <div class="zig__media">${photo(P, imgs[i], { sizes: '(max-width: 900px) 100vw, 50vw' })}</div>
